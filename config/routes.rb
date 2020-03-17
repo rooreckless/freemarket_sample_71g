@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root "deploytest#index"
+  #上の記述はデプロイができている確認用のビューを表示するためのものです。確認出来次第削除願います。
+  #また、デプロイが確認されたあとは、deploytestコントローラと、views内のdeploytestディレクトリも削除願います。
 end
