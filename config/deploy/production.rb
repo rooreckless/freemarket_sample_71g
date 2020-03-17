@@ -62,3 +62,6 @@
 server '54.64.42.195', user: 'ec2-user', roles: %w{app db web}
 #上の記述は本番環境にデプロイする際の接続設定です。
 #staging.rbに書くと、他環境にデプロイできるようになりますが、今回実施していません。 
+
+set :rails_env, "production"
+set :unicorn_rack_env, "production"
