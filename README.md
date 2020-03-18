@@ -59,7 +59,7 @@ belongs_to : user
 |column|Type|Options|
 |------|----|-------|
 |status|integer|null: false|
-|product_name|string|null: false|
+|name|string|null: false|
 |explanation|text|null: false|
 |brand|string|null: false|
 |price|string|null: false|
@@ -69,12 +69,14 @@ belongs_to : user
 
 ## Association
 - belongs_to :category
-- has_many :mages
+- belongs_to :user
+- has_many :images
 
 ## imageテーブル
 |column|Type|Options|
 |------|----|-------|
 |image|text|null: false, foreign_key: true|
+|product_id|string|null: false, foreign_key: true|
 
 ## Association
 - belongs_to :product
@@ -83,18 +85,7 @@ belongs_to : user
 |column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|product_id|string||
+|product_id|string|null: false, foreign_key: true|
 
 ## Association
-- has_many :products, through: :categories_product
-
-## categories_productaテーブル
-
-|Column|Type|Options|
-|------|----|-------|
-|category_id|integer|null: false, foreign_key: true|
-|product_id|integer|null: false, foreign_key: true|
-
-### Association
-- belongs_to :category
-- belongs_to :product
+- has_many :products
