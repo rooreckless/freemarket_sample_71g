@@ -75,8 +75,9 @@ belongs_to : user
 ## imageテーブル
 |column|Type|Options|
 |------|----|-------|
-|image|text||
-|product_id|string||
+|image|text|null: false, foreign_key: true|
+|product_id|string|null: false, foreign_key: true|
+|category_id|string|null: false, foreign_key: true|
 
 ## Association
 - belongs_to :product
