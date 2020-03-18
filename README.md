@@ -19,6 +19,7 @@ has_many :products
 |last_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |birthday|string|null: false|
+|user_id|string||
 
 ## Association
 belongs_to : user
@@ -29,7 +30,7 @@ belongs_to : user
 |card_number|string|null: false|
 |expiry_date|string|null: false|
 |security_code|string|null: false|
-|user_id|string|null:false|
+|user_id|string||
 
 ## Association
 belongs_to : user
@@ -49,6 +50,7 @@ belongs_to : user
 |room_number|string||
 |phone_number|string||
 |user_id|string|null:false|
+|user_id|string||
 
 ## Association
 belongs_to : user
@@ -63,7 +65,6 @@ belongs_to : user
 |price|string|null: false|
 |shipping_date|string|null: false|
 |place|string|null: false|
-
 |user_id|string|null:false|
 
 ## Association
@@ -74,10 +75,8 @@ belongs_to : user
 ## imageテーブル
 |column|Type|Options|
 |------|----|-------|
-|image1|text||
-|image2|text||
-|image3|text||
-|image4|text||
+|image|text||
+|product_id|string||
 
 ## Association
 - belongs_to :product
@@ -86,6 +85,18 @@ belongs_to : user
 |column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
+|product_id|string||
 
 ## Association
 - has_many :products, through: :categories_product
+
+## categories_productaテーブル
+
+|Column|Type|Options|
+|------|----|-------|
+|category_id|integer|null: false, foreign_key: true|
+|product_id|integer|null: false, foreign_key: true|
+
+### Association
+- belongs_to :category
+- belongs_to :product
