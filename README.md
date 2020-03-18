@@ -8,7 +8,7 @@
 ## Association
 has_many :confirms
 has_many :credits
-has_many :addresss
+has_many :addresses
 has_many :products
 
 ## confirmテーブル
@@ -49,8 +49,7 @@ belongs_to : user
 |building_name|string||
 |room_number|string||
 |phone_number|string||
-|user_id|string|null:false|
-|user_id|string||
+|user_id|string|null:false, foreign_key: true|
 
 ## Association
 belongs_to : user
@@ -61,23 +60,20 @@ belongs_to : user
 |status|integer|null: false|
 |product_name|string|null: false|
 |explanation|text|null: false|
-|bland|string|null: false|
+|brand|string|null: false|
 |price|string|null: false|
 |shipping_date|string|null: false|
 |place|string|null: false|
-|user_id|string|null:false|
+|user_id|string|null:false, foreign_key: true|
 
 ## Association
 - belongs_to :category
-- has_many :categories, through: :categories_product
 - has_many :mages
 
 ## imageテーブル
 |column|Type|Options|
 |------|----|-------|
 |image|text|null: false, foreign_key: true|
-|product_id|string|null: false, foreign_key: true|
-|category_id|string|null: false, foreign_key: true|
 
 ## Association
 - belongs_to :product
