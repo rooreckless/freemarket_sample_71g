@@ -14,10 +14,10 @@ has_many :products
 ## confirmテーブル
 |Column|Type|Options|
 |------|----|-------|
-|namemyouji|string|null: false|
-|namenamae|string|null: false|
-|friganamyouji|string|null: false|
-|frigananamae|string|null: false|
+|name_last_name|string|null: false|
+|name_first_name|string|null: false|
+|last_name_kana|string|null: false|
+|first_name_kana|string|null: false|
 |birthday|string|null: false|
 
 ## Association
@@ -26,9 +26,10 @@ belongs_to : user
 ## creditテーブル
 |Column|Type|Options|
 |------|----|-------|
-|cardnumber|string|null: false|
-|expirydate|string|null: false|
-|securitycode|string|null: false|
+|card_number|string|null: false|
+|expiry_date|string|null: false|
+|security_code|string|null: false|
+|user_id|string|null:false|
 
 ## Association
 belongs_to : user
@@ -36,17 +37,18 @@ belongs_to : user
 ## addressテーブル
 |Column|Type|Options|
 |------|----|-------|
-|shippingnamemyouji|string|null: false|
-|shippingnamenamae|string|null: false|
-|shippingfuriganamyouji|string|null: false|
-|shippingfurigananamae|string|null: false|
+|shipping_name_last_name|string|null: false|
+|shipping_name_first_name|string|null: false|
+|shipping_last_name_kana|string|null: false|
+|shipping_first_name_kana|string|null: false|
 |postcode|string|null: false|
 |state|string|null: false|
 |city|string|null: false|
-|addressline|string|null: false|
-|buildingname|string||
-|roomnumber|string||
-|phonenumber|string||
+|address_line|string|null: false|
+|building_name|string||
+|room_number|string||
+|phone_number|string||
+|user_id|string|null:false|
 
 ## Association
 belongs_to : user
@@ -54,21 +56,31 @@ belongs_to : user
 ## productテーブル
 |column|Type|Options|
 |------|----|-------|
-|status|text|null: false|
-|product-name|string|null: false|
+|status|integer|null: false|
+|product_name|string|null: false|
 |explanation|text|null: false|
 |bland|string|null: false|
 |price|string|null: false|
-|shipping-date|string|null: false|
+|shipping_date|string|null: false|
 |place|string|null: false|
+
+|user_id|string|null:false|
+
+## Association
+- belongs_to :category
+- has_many :categories, through: :categories_product
+- has_many :mages
+
+## imageテーブル
+|column|Type|Options|
+|------|----|-------|
 |image1|text||
 |image2|text||
 |image3|text||
 |image4|text||
 
 ## Association
-- belongs_to :user
-- has_many :categories, through: :categories_product
+- belongs_to :product
 
 ## categoryテーブル
 |column|Type|Options|
@@ -76,4 +88,4 @@ belongs_to : user
 |name|string|null: false|
 
 ## Association
-- belong_to :products, through: :categories_product
+- has_many :products, through: :categories_product
