@@ -20,7 +20,7 @@ has_many :products
 |last_name_kana|string|null: false|
 |first_name_kana|string|null: false|
 |birthday|string|null: false|
-|user_id|string||
+|user_id|integer||
 
 ## Association
 belongs_to : user
@@ -31,7 +31,7 @@ belongs_to : user
 |card_number|string|null: false|
 |expiry_date|string|null: false|
 |security_code|string|null: false|
-|user_id|string||
+|user_id|integer||
 
 ## Association
 belongs_to : user
@@ -50,7 +50,7 @@ belongs_to : user
 |building_name|string||
 |room_number|string||
 |phone_number|string||
-|user_id|string|null:false, foreign_key: true|
+|user_id|integer|null:false, foreign_key: true|
 
 ## Association
 belongs_to : user
@@ -65,7 +65,8 @@ belongs_to : user
 |price|string|null: false|
 |shipping_date|string|null: false|
 |place|string|null: false|
-|user_id|string|null:false, foreign_key: true|
+|user_id|integer|null:false, foreign_key: true|
+|category_id|integer|null:false, foreign_key: true|
 
 ## Association
 - belongs_to :category
@@ -76,7 +77,7 @@ belongs_to : user
 |column|Type|Options|
 |------|----|-------|
 |image|text|null: false, foreign_key: true|
-|product_id|string|null: false, foreign_key: true|
+|product_id|integer|null: false, foreign_key: true|
 
 ## Association
 - belongs_to :product
@@ -85,7 +86,7 @@ belongs_to : user
 |column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
-|product_id|string|null: false, foreign_key: true|
+|product_id|integer|null: false, foreign_key: true|
 
 ## Association
 - has_many :products
