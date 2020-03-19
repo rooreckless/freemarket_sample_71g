@@ -89,3 +89,4 @@ belongs_to : user
 
 ## Association
 - has_many :products
+
