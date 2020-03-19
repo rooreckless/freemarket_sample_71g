@@ -37,8 +37,7 @@ header{
           background-position: center;
           cursor: pointer;
           &:hover{
-            opacity: 0.7;
-            transition: 200ms;
+            @include hoverOpacity();
           }
         }
       }
@@ -107,29 +106,11 @@ header{
         display: flex;
         &--app{
           background-image: url(material/icon/appstore.png);
-          height: 100%;
-          width: 15%;
-          margin-right: 10px;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 100% 100%;
-          &:hover{
-            opacity: 0.5;
-            transition: 200ms;
-          }
+          @include appGooglebtns;
         }
         &--google{
           background-image: url(material/icon/google.png);
-          height: 100%;
-          width: 15%;
-          margin-right: 10px;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 100% 100%;
-          &:hover{
-            opacity: 0.5;
-            transition: 200ms;
-          }
+          @include appGooglebtns;
         }
       }
     }
@@ -241,29 +222,11 @@ header{
         display: flex;
         &--app{
           background-image: url(material/icon/appstore.png);
-          height: 100%;
-          width: 15%;
-          margin-right: 10px;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 100% 100%;
-          &:hover{
-            opacity: 0.5;
-            transition: 200ms;
-          }
+          @include appGooglebtns;
         }
         &--google{
           background-image: url(material/icon/google.png);
-          height: 100%;
-          width: 15%;
-          margin-right: 10px;
-          background-repeat: no-repeat;
-          background-position: center;
-          background-size: 100% 100%;
-          &:hover{
-            opacity: 0.5;
-            transition: 200ms;
-          }
+          @include appGooglebtns;
         }
       }
     }
@@ -352,7 +315,7 @@ header{
         justify-content: space-around;
         & a{
           &:hover{
-            opacity: 0.5;
+            @include  hoverOpacity;
           }
         }
         & .fifthContent__list{
@@ -423,8 +386,7 @@ header{
           background-position: center;
           background-size: 100% 100%;
           &:hover{
-            opacity: 0.5;
-            transition: 200ms;
+            @include hoverOpacity();
           }
         }
         &--google{
@@ -436,8 +398,7 @@ header{
           background-position: center;
           background-size: 100% 100%;
           &:hover{
-            opacity: 0.5;
-            transition: 200ms;
+            @include hoverOpacity();
           }
           }
         }
@@ -492,8 +453,7 @@ header{
   border-radius: 5px;
   padding: 15px;
   &:hover{
-    opacity: 0.9;
-    transition: 200ms;
+    @include hoverOpacity();
   }
   & p{
     text-align: center;
@@ -509,18 +469,4 @@ header{
     background-position: center;
     margin: 0 auto;
   }
-}
-
-
-
-
-
-.linkBlack{
-  color: $mainBlack;
-}
-.linkWhite{
-  color: $mainWhite;
-}
-.linkBlue{
-  color: $mainBlue;
 }
