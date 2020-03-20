@@ -16,25 +16,14 @@
         %span<>
         Googleでログイン
     .container-main__form
-      -# %h2 Log in
       = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
         .field.container-main__form--email
-          -# = f.label :email
-          -# %br/
           = f.email_field :email, autofocus: false, autocomplete: "email",placeholder: 'メールアドレス'
         .field.container-main__form--password
-          -# = f.label :password
           %br/
           = f.password_field :password, autocomplete: "current-password",placeholder: 'パスワード'
-        -# .field.container-main__form--hiddenbox
-        -# - if devise_mapping.rememberable?
-          -# .field
-            -# = f.check_box :remember_me
-            -# = f.label :remember_me
         .actions
           = f.submit "ログイン" ,class:'container-main__form__loginbtn linkWhite'
-        -# = link to '#' ,class:'container-main--passwordresettext' do
-      -# %a.container-main--passwordresettext
       = render "devise/shared/links"
       = link_to '#',class:'linkBlue' do
         パスワードをお忘れの方
