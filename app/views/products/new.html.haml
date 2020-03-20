@@ -69,7 +69,7 @@
           %span
             必須
         .formBox__select
-          = f.select :place ,[ ["レディース"], ["メンズ"] ] ,prompt: "選択してください"
+          = f.select :place ,Product.places.keys, {},prompt: "選択してください"
         .formBox__texts
           %span
             発送までの日数
