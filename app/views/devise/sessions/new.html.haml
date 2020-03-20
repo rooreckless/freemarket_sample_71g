@@ -1,61 +1,30 @@
-.outer-box
-  .single-container
-    .single-container__header
-      %h1.single-container__header__h1
-        = link_to '#' ,class:'single-container__header__h1--link' do
-          = image_tag 'material/logo/logo.png',class:'single-container__header__h1--link--logo'
-    .single-container__main
-      .single-container__main__register
-        %p.single-container__main__register--text
-          アカウントをお持ちでない方はこちら
-        = link_to '#' ,class:'single-container__main__register--btn linkWhite' do
-          新規会員登録
-      .single-container__main__0auth
-        %button.single-container__main__0auth--facebook.linkWhite
-          = icon('fab','facebook-f',class:'single-container__main__0auth--facebook--icon')
-          %span<>
-          Facebookでログイン
-        %button.single-container__main__0auth--google.linkBlack
-          = icon('fab','google',class:'single-container__main__0auth--google--icon')
-          %span<>
-          Googleでログイン
-      .single-container__main__form
-        -# %h2 Log in
-        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          .field.single-container__main__form--email
-            -# = f.label :email
-            -# %br/
-            = f.email_field :email, autofocus: false, autocomplete: "email",placeholder: 'メールアドレス'
-          .field.single-container__main__form--password
-            -# = f.label :password
-            %br/
-            = f.password_field :password, autocomplete: "current-password",placeholder: 'パスワード'
-          -# .field.single-container__main__form--hiddenbox
-          -# - if devise_mapping.rememberable?
-            -# .field
-              -# = f.check_box :remember_me
-              -# = f.label :remember_me
-          .actions
-            = f.submit "ログイン" ,class:'single-container__main__form__loginbtn linkWhite'
-          -# = link to '#' ,class:'single-container__main--passwordresettext' do
-        -# %a.single-container__main--passwordresettext
-        = render "devise/shared/links"
-        = link_to '#',class:'linkBlue' do
-          パスワードをお忘れの方
-   
-    .single-container__footer
-      %ul.single-container__footer__nav
-        %li
-          = link_to '#' ,class:'single-container__footer__nav--link linkBlack' do
-            プライバシーポリシー
-        %li
-          = link_to '#' ,class:'single-container__footer__nav--link linkBlack' do
-            フリマ利用規約
-        %li
-          = link_to '#' ,class:'single-container__footer__nav--link linkBlack' do
-            特定商取引に関する表記
-      -# = link_to '#' ,class:'single-container__footer__logo' do
-        -# = image_tag 'material/logo/logo.png',class:'single-container__footer__logo--img'
-      %p.single-container__footer__copo
-        %small.single-container__footer__copo--text
-          © FURIMA, Inc.
+= render 'devise/header'
+.container-outer
+  .container-main
+    .container-main__register
+      %p.container-main__register--text
+        アカウントをお持ちでない方はこちら
+      = link_to new_user_registration_path ,class:'container-main__register--btn linkWhite' do
+        新規会員登録
+    .container-main__0auth
+      %button.container-main__0auth--facebook.linkWhite
+        = icon('fab','facebook-f',class:'container-main__0auth--facebook--icon')
+        %span<>
+        Facebookでログイン
+      %button.container-main__0auth--google.linkBlack
+        = icon('fab','google',class:'container-main__0auth--google--icon')
+        %span<>
+        Googleでログイン
+    .container-main__form
+      = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+        .field.container-main__form--email
+          = f.email_field :email, autofocus: false, autocomplete: "email",placeholder: 'メールアドレス'
+        .field.container-main__form--password
+          %br/
+          = f.password_field :password, autocomplete: "current-password",placeholder: 'パスワード'
+        .actions
+          = f.submit "ログイン" ,class:'container-main__form__loginbtn linkWhite'
+      = render "devise/shared/links"
+      = link_to '#',class:'linkBlue' do
+        パスワードをお忘れの方
+= render 'devise/footer'

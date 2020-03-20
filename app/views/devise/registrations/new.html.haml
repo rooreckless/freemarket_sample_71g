@@ -1,29 +1,23 @@
 .sign_in_row
-  .header
-    .header__rogo
-      = image_tag src="/assets/material/logo/logo.png", size: "185x49"
+  = render 'devise/header'
   .main
     .main__new
       .main__new__title
         %h2 会員情報登録
-
       .main__new__form
         .main__new__form__input
           = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
             = render "devise/shared/error_messages", resource: resource
-
             .field
               = f.label :ニックネーム
               %span.form-require 必須
               %br/
               = f.text_field :nikname, autofocus: true, class: 'form-control', placeholder:"例）フリマ太郎"
-            
             .field
               = f.label :メールアドレス
               %span.form-require 必須
               %br/
               = f.email_field :email, autofocus: true, class: 'form-control', placeholder:"例）PC・携帯どちらでも可"
-
             .field
               = f.label :パスワード
               %span.form-require 必須
@@ -32,17 +26,9 @@
             .field
               .main__new__form__input
                 %p ※ 英字と数字の両方を含めて設定してください
-
-            -# .field--box
-            -#   %i.fas.fa-check-square
-            -#   %p パスワードを表示する
-
-             
-        
             .field
               %h1 本人確認 
               %h1 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
-
             .field_1
               = f.label :お名前（全角）
               %span.form-require 必須
@@ -57,7 +43,6 @@
               .form-control_1
                 = f.password_field :encrypted_password, autofocus: true, class: 'form-control_1_2', placeholder:"例）サトウ"
                 = f.password_field :encrypted_password, autofocus: true, class: 'form-control_1_2', placeholder:"例）コウジロウ"
-
               .field_1
                 %label{:for => "birthday"} 生年月日
                 %span.form-require 必須
@@ -94,38 +79,7 @@
 
               .field
                 %p This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
-
-                
-
-
-                                
-                
-                
-                
-
-                
-
-
-
-
-
-
-
-
-
-  .footer
-    .footer__link
-      %p プライバシーポリシー
-      %p フリマ利用規約
-      %p 特定商取引に関する表記
-      
-    .footer__logo
-      = image_tag src="/assets/material/logo/logo-white.png", size: "185x49"
-    .footer__data
-
-
-
-
+  = render 'devise/footer'
 
 
     
