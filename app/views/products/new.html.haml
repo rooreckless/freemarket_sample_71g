@@ -3,7 +3,7 @@
     = link_to "#" , class:"#" do
       %div.productNew__logo
   .formLow
-    = form_with model:@product, local: true do |f|
+    = form_for @product do |f|
       -# .formBox.formBox__image
       -#   .formBox__texts
       -#     %span
@@ -30,7 +30,7 @@
             商品の説明
           %span
             必須
-        = f.text_area :name,class: "formBox__explanation--input", placeholder:"商品の説明（必須 1,000文字以内）&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10;&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe 
+        = f.text_area :explanation,class: "formBox__explanation--input", placeholder:"商品の説明（必須 1,000文字以内）&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10;&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe 
       %hr
       .formBox
         .formBox__description
@@ -51,14 +51,14 @@
             ブランド
           %span
             必須
-        = f.text_field :name,class: "formBox__name--input", placeholder:"例）シャネル"
+        = f.text_field :brand,class: "formBox__name--input", placeholder:"例）シャネル"
         .formBox__texts
           %span
             商品の状態
           %span
             必須
         .formBox__select
-          = f.select :name ,[ ["新品、未使用",1], ["未使用に近い", 2] , ["目立った傷や汚れなし", 3] , ["やや傷や汚れあり", 4] , ["傷や汚れあり", 5] , ["全体的に状態が悪い", 6] ] ,prompt: "選択してください"
+          = f.select :status ,[ ["新品、未使用",1], ["未使用に近い", 2] , ["目立った傷や汚れなし", 3] , ["やや傷や汚れあり", 4] , ["傷や汚れあり", 5] , ["全体的に状態が悪い", 6] ] ,prompt: "選択してください"
       %hr
       .formBox
         .formBox__description
@@ -76,7 +76,7 @@
           %span
             必須
         .formBox__select
-          = f.select :name ,[ ["１〜２日で発送",1], ["２〜３日で発送", 2], ["４〜７日で発送", 3] ] ,prompt: "選択してください"
+          = f.select :shipping_date ,[ ["１〜２日で発送",1], ["２〜３日で発送", 2], ["４〜７日で発送", 3] ] ,prompt: "選択してください"
       %hr
       .formBox
         .formBox__description
