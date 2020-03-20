@@ -62,7 +62,7 @@ belongs_to : user
 |name|string|null: false|
 |explanation|text|null: false|
 |brand|string|null: false|
-|price|string|null: false|
+|price|integer|null: false|
 |shipping_date|string|null: false|
 |place|string|null: false|
 |user_id|integer|null:false, foreign_key: true|
