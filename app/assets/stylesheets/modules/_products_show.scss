@@ -1,0 +1,178 @@
+
+.main-screen{
+  height: 100%;
+  width: 100vw;
+  background-color: $mainGray;
+  padding: 40px;
+
+
+  &__wrap{
+    width: 700px;
+    margin: auto;
+
+
+    &__box{
+      background-color: $mainWhite;
+      text-align: center;
+      padding: 24px 40px 40px;
+
+
+      &--name{
+        font-weight: bold;
+        font-size: 32px;
+        line-height: 37px;
+        margin-bottom: 10px;
+      }
+
+      &--img{
+        height: 433px;
+        margin: 0px 30px;
+        
+        &--cntent{
+          height: 346px;
+        }
+      }
+
+      &--price{
+        font-size: 46px;
+        line-height: 53px;
+        height: 53px;
+      }
+
+      &--subprice{
+        font-size: 16px;
+        line-height: 24px;
+      }
+
+      &--comment{
+        line-height: 1.5;
+        font-size: 18px;
+        margin: 30px 0px;
+      }
+
+      &--wrap{
+        border: 1px solid $mainGray;
+        font-size: 14px;
+        margin-bottom: 30px;
+
+        &__record{
+          display: flex;
+
+          &__left{
+            background-color: $middleGray;
+            padding: 15px;
+            width: 25%;
+            border: 0.5px solid $mainGray;
+          }
+
+          &__right{
+            background-color: $mainWhite;
+            padding: 15px;
+            width: 75%;
+            border: 0.5px solid $mainGray;
+            text-align: left;
+
+          }
+        }
+      }
+
+      &--option{
+        justify-content: space-between;
+        display: flex;
+
+        &__left{
+          border: 1px solid $hoverYellow;
+          margin-right: auto;
+          padding: 6px 10px;
+          border-radius: 40px;
+          color: $mainBlue;
+        }
+
+        &__right{
+          display: inline-block;
+          padding-inline-start: 40px;
+          border: 1px solid $mainBlack;
+          text-decoration: none;
+          padding: 6px 10px;
+          border-radius: 4px;
+          color: $mainBlack;
+
+          & .link_flag{
+            color: $mainBlack;
+          }
+          
+        }
+      }
+    }
+
+    &__subbox{
+      padding: 24px 40px 40px;
+      margin: 10px 0;
+      background-color: $mainWhite;
+      text-align: center;
+
+
+      .content{
+        width: 100%;
+        min-height: 104px;
+        padding: 10px 0;
+      }
+
+      &--text{
+        padding: 8px;
+        font-size: 14px;
+        background-color: $mainGray;
+        margin: 10px 0 30px;
+        text-align: left;
+      }
+
+      & .btn{
+        color: $mainWhite;
+        width: 60%;
+        font-size: 18px;
+        height: 48px;
+        border: 1px solid $mainBlue;
+        border-radius: 100px;
+        margin: auto;
+        position: relative;
+        background-color: $mainBlue;
+
+        & .icon{
+          position: absolute;
+          top: 16px;
+          cursor: pointer;
+          left: 100px;
+          z-index: 1;
+        }
+
+        & .btnn{
+          width:100%;
+          cursor: pointer;
+        }
+
+      }
+    }
+
+    &__page{
+      justify-content: space-between;
+      display: flex;
+
+      &__left{
+      }
+
+      &__right{
+      }
+    }
+
+    &__bottom{
+      display: block;
+      margin: 24px 0 8px;
+      font-weight: bold;
+      font-size: 22px;
+    }
+  }
+}
+
+.link{
+  color: $mainBlue;
+}
