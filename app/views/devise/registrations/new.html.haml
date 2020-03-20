@@ -1,7 +1,8 @@
 .sign_in_row
-  .header
-    .header__rogo
-      = image_tag src="/assets/material/logo/logo.png", size: "185x49"
+  -# .header
+  -#   .header__rogo
+  -#     = image_tag src="/assets/material/logo/logo.png", size: "185x49"
+  = render 'devise/header'
   .main
     .main__new
       .main__new__title
@@ -95,37 +96,7 @@
               .field
                 %p This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
 
-                
-
-
-                                
-                
-                
-                
-
-                
-
-
-
-
-
-
-
-
-
-  .footer
-    .footer__link
-      %p プライバシーポリシー
-      %p フリマ利用規約
-      %p 特定商取引に関する表記
-      
-    .footer__logo
-      = image_tag src="/assets/material/logo/logo-white.png", size: "185x49"
-    .footer__data
-
-
-
-
+  = render 'devise/footer'
 
 
     
