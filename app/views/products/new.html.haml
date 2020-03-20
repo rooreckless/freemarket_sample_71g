@@ -3,20 +3,20 @@
     = link_to "#" , class:"#" do
       %div.productNew__logo
   .formLow
-    = form_with model:@post, local: true do |f|
-      .formBox.formBox__image
-        .formBox__texts
-          %span
-            出品画像
-          %span
-            必須
-          .formBox__secondTexts
-            商品の画像をアップロードできます。
-        = f.label :image, class: 'formBox__imageBox' do
-          = f.file_field :image, class: "formBox__imageBox--image"
-          %i.fas.fa-camera
-          %div
-            画像をアップロード
+    = form_with model:@product, local: true do |f|
+      -# .formBox.formBox__image
+      -#   .formBox__texts
+      -#     %span
+      -#       出品画像
+      -#     %span
+      -#       必須
+      -#     .formBox__secondTexts
+      -#       商品の画像をアップロードできます。
+      -#   = f.label :image, class: 'formBox__imageBox' do
+      -#     = f.file_field :image, class: "formBox__imageBox--image"
+      -#     %i.fas.fa-camera
+      -#     %div
+      -#       画像をアップロード
       %hr
       .formBox
         .formBox__texts
@@ -35,17 +35,17 @@
       .formBox
         .formBox__description
           商品の詳細
-        .formBox__texts
-          %span
-            カテゴリー
-          %span
-            必須
-        .formBox__select
-          = f.select :name ,[ ["レディース",1], ["メンズ", 2] ] ,prompt: "カテゴゴリを選択してください"
-        .formBox__select
-          = f.select :name ,[ ["レディース",1], ["メンズ", 2] ],prompt: "カテゴゴリを選択してください"
-        .formBox__select
-          = f.select :name ,[ ["レディース",1], ["メンズ", 2] ],prompt: "カテゴゴリを選択してください"
+        -# .formBox__texts
+        -#   %span
+        -#     カテゴリー
+        -#   %span
+        -#     必須
+        -# .formBox__select
+        -#   = f.select :name ,[ ["レディース",1], ["メンズ", 2] ] ,prompt: "カテゴゴリを選択してください"
+        -# .formBox__select
+        -#   = f.select :name ,[ ["レディース",1], ["メンズ", 2] ],prompt: "カテゴゴリを選択してください"
+        -# .formBox__select
+        -#   = f.select :name ,[ ["レディース",1], ["メンズ", 2] ],prompt: "カテゴゴリを選択してください"
         .formBox__texts
           %span
             ブランド
