@@ -1,11 +1,10 @@
-.provisional-header 
-  ヘッダーが入る予定のboxです。部分テンプレートのヘッダーが入ったら、.provisional-header は消してください。
+= render 'devise/header'
 .container-outer
   .container-main
     .container-main__register
       %p.container-main__register--text
         アカウントをお持ちでない方はこちら
-      = link_to '#' ,class:'container-main__register--btn linkWhite' do
+      = link_to new_user_registration_path ,class:'container-main__register--btn linkWhite' do
         新規会員登録
     .container-main__0auth
       %button.container-main__0auth--facebook.linkWhite
@@ -39,18 +38,4 @@
       = render "devise/shared/links"
       = link_to '#',class:'linkBlue' do
         パスワードをお忘れの方
-.provisional-footer
-  フッターが入る予定のboxです。部分テンプレートのフッターが入ったら、.provisional-footer は消してください。
-  %ul.provisional-footer__nav
-    %li
-      = link_to '#' ,class:'provisional-footer__nav--link linkBlack' do
-        プライバシーポリシー
-    %li
-      = link_to '#' ,class:'provisional-footer__nav--link linkBlack' do
-        フリマ利用規約
-    %li
-      = link_to '#' ,class:'provisional-footer__nav--link linkBlack' do
-        特定商取引に関する表記
-  %p.provisional-footer__copo
-    %small.provisional-footer__copo--text
-      © FURIMA, Inc.
+= render 'devise/footer'
