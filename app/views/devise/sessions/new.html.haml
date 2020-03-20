@@ -8,14 +8,14 @@
       .single-container__main__register
         %p.single-container__main__register--text
           アカウントをお持ちでない方はこちら
-        = link_to '#' ,class:'single-container__main__register--btn' do
+        = link_to '#' ,class:'single-container__main__register--btn linkWhite' do
           新規会員登録
       .single-container__main__0auth
-        %button.single-container__main__0auth--facebook
+        %button.single-container__main__0auth--facebook.linkWhite
           = icon('fab','facebook-f',class:'single-container__main__0auth--facebook--icon')
           %span<>
           Facebookでログイン
-        %button.single-container__main__0auth--google
+        %button.single-container__main__0auth--google.linkBlack
           = icon('fab','google',class:'single-container__main__0auth--google--icon')
           %span<>
           Googleでログイン
@@ -36,23 +36,23 @@
               -# = f.check_box :remember_me
               -# = f.label :remember_me
           .actions
-            = f.submit "ログイン" ,class:'single-container__main__form__loginbtn'
+            = f.submit "ログイン" ,class:'single-container__main__form__loginbtn linkWhite'
           -# = link to '#' ,class:'single-container__main--passwordresettext' do
         -# %a.single-container__main--passwordresettext
         = render "devise/shared/links"
-        = link_to '#' do
+        = link_to '#',class:'linkBlue' do
           パスワードをお忘れの方
    
     .single-container__footer
       %ul.single-container__footer__nav
         %li
-          = link_to '#' ,class:'single-container__footer__nav--link' do
+          = link_to '#' ,class:'single-container__footer__nav--link linkBlack' do
             プライバシーポリシー
         %li
-          = link_to '#' ,class:'single-container__footer__nav--link' do
+          = link_to '#' ,class:'single-container__footer__nav--link linkBlack' do
             フリマ利用規約
         %li
-          = link_to '#' ,class:'single-container__footer__nav--link' do
+          = link_to '#' ,class:'single-container__footer__nav--link linkBlack' do
             特定商取引に関する表記
       -# = link_to '#' ,class:'single-container__footer__logo' do
         -# = image_tag 'material/logo/logo.png',class:'single-container__footer__logo--img'
