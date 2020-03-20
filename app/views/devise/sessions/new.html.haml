@@ -1,17 +1,61 @@
-%h2 Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    %br/
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+.outer-box
+  .single-container
+    .single-container__header
+      %h1.single-container__header__h1
+        = link_to '#' ,class:'single-container__header__h1--link' do
+          = image_tag 'material/logo/logo.png',class:'single-container__header__h1--link--logo'
+    .single-container__main
+      .single-container__main__register
+        %p.single-container__main__register--text
+          アカウントをお持ちでない方はこちら
+        = link_to '#' ,class:'single-container__main__register--btn' do
+          新規会員登録
+      .single-container__main__0auth
+        %button.single-container__main__0auth--facebook
+          = icon('fab','facebook-f',class:'single-container__main__0auth--facebook--icon')
+          %span<>
+          Facebookでログイン
+        %button.single-container__main__0auth--google
+          = icon('fab','google',class:'single-container__main__0auth--google--icon')
+          %span<>
+          Googleでログイン
+      .single-container__main__form
+        -# %h2 Log in
+        = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+          .field.single-container__main__form--email
+            -# = f.label :email
+            -# %br/
+            = f.email_field :email, autofocus: false, autocomplete: "email",placeholder: 'メールアドレス'
+          .field.single-container__main__form--password
+            -# = f.label :password
+            %br/
+            = f.password_field :password, autocomplete: "current-password",placeholder: 'パスワード'
+          -# .field.single-container__main__form--hiddenbox
+          -# - if devise_mapping.rememberable?
+            -# .field
+              -# = f.check_box :remember_me
+              -# = f.label :remember_me
+          .actions
+            = f.submit "ログイン" ,class:'single-container__main__form__loginbtn'
+          -# = link to '#' ,class:'single-container__main--passwordresettext' do
+        -# %a.single-container__main--passwordresettext
+        = render "devise/shared/links"
+        = link_to '#' do
+          パスワードをお忘れの方
+   
+    .single-container__footer
+      %ul.single-container__footer__nav
+        %li
+          = link_to '#' ,class:'single-container__footer__nav--link' do
+            プライバシーポリシー
+        %li
+          = link_to '#' ,class:'single-container__footer__nav--link' do
+            フリマ利用規約
+        %li
+          = link_to '#' ,class:'single-container__footer__nav--link' do
+            特定商取引に関する表記
+      -# = link_to '#' ,class:'single-container__footer__logo' do
+        -# = image_tag 'material/logo/logo.png',class:'single-container__footer__logo--img'
+      %p.single-container__footer__copo
+        %small.single-container__footer__copo--text
+          © FURIMA, Inc.
