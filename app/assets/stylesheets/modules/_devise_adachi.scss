@@ -37,7 +37,7 @@
       width:100%;
       height:760px;
       text-align:center;
-      background-color:white;
+      background-color:$mainWhite;
       
       &__register{
         box-sizing:inherit;
@@ -56,7 +56,6 @@
           height:42px;
           margin-top:8px;
           text-decoration: none;
-          color:$mainWhite;
           background-color:$mainBlue;
           text-align: center;
           line-height: 42px;
@@ -73,7 +72,6 @@
           box-sizing:inherit;
           display:block;
           background: #385185;
-          color: #fff;
           width:328px;
           height:42px;
           text-align: center;
@@ -89,10 +87,9 @@
         &--google{
           box-sizing:inherit;
           display:block;
-          border: #979797 solid 1px;
+          border: $darkGray solid 1px;
           width:328px;
           height:42px;
-          color:$mainBlack;
           margin:6px 0 0;
           text-align: center;
           font-size:14px;
@@ -118,14 +115,12 @@
           box-sizing:border-box;
           padding: 10px 16px 8px;
           border-radius: 4px;
-          border: 1px solid #ccc;
-          background: #fff;
+          border: 1px solid $middleGray;
           line-height: 1.5;
           font-size: 16px;
         }
         & > a:nth-last-child(1){
           visibility: visible;
-          color:$mainBlue;
           font-size: 14px;
           text-decoration: none;
           cursor: pointer;
@@ -133,17 +128,10 @@
         & > a{
           visibility: hidden;
         }
-        // &--hiddenbox{
-        //   width:328px;
-        //   height:78px;
-        //   border:1px solid black;
-        //   margin-top: 24px;
-        // }
         &__loginbtn{
           width:328px;
           height:50px;
           background-color:$mainBlue;
-          color:$mainWhite;
           margin-top:calc(24px + 24px + 78px);
           cursor: pointer;
         }
@@ -161,7 +149,6 @@
           display:inline-block;
           font-size:12px;
           text-decoration: none;
-          color:$mainBlack;
         }
       }
       &__logo{
