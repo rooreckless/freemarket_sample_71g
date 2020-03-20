@@ -1,1 +1,100 @@
-aaa石坂
+.productNewLow
+  .productNew__logoLow
+    = link_to "#" , class:"#" do
+      %div.productNew__logo
+  .formLow
+    = form_with model:@post, local: true do |f|
+      .formBox.formBox__image
+        .formBox__texts
+          %span
+            出品画像
+          %span
+            必須
+          .formBox__secondTexts
+            商品の画像をアップロードできます。
+        = f.label :image, class: 'formBox__imageBox' do
+          = f.file_field :image, class: "formBox__imageBox--image"
+          %i.fas.fa-camera
+          %div
+            画像をアップロード
+      %hr
+      .formBox
+        .formBox__texts
+          %span
+            商品名
+          %span
+            必須
+        = f.text_field :name,class: "formBox__name--input", placeholder:"40文字まで"
+        .formBox__texts
+          %span
+            商品の説明
+          %span
+            必須
+        = f.text_area :name,class: "formBox__explanation--input", placeholder:"商品の説明（必須 1,000文字以内）&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10;&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe 
+      %hr
+      .formBox
+        .formBox__description
+          商品の詳細
+        .formBox__texts
+          %span
+            カテゴリー
+          %span
+            必須
+        .formBox__select
+          = f.select :name ,[ ["レディース",1], ["メンズ", 2] ] ,prompt: "カテゴゴリを選択してください"
+        .formBox__select
+          = f.select :name ,[ ["レディース",1], ["メンズ", 2] ],prompt: "カテゴゴリを選択してください"
+        .formBox__select
+          = f.select :name ,[ ["レディース",1], ["メンズ", 2] ],prompt: "カテゴゴリを選択してください"
+        .formBox__texts
+          %span
+            ブランド
+          %span
+            必須
+        = f.text_field :name,class: "formBox__name--input", placeholder:"例）シャネル"
+        .formBox__texts
+          %span
+            商品の状態
+          %span
+            必須
+        .formBox__select
+          = f.select :name ,[ ["新品、未使用",1], ["未使用に近い", 2] , ["目立った傷や汚れなし", 3] , ["やや傷や汚れあり", 4] , ["傷や汚れあり", 5] , ["全体的に状態が悪い", 6] ] ,prompt: "選択してください"
+      %hr
+      .formBox
+        .formBox__description
+          配送について
+        .formBox__texts
+          %span
+            発送元の地域
+          %span
+            必須
+        .formBox__select
+          = f.select :name ,[ ["レディース",1], ["メンズ", 2] ] ,prompt: "選択してください"
+        .formBox__texts
+          %span
+            発送までの日数
+          %span
+            必須
+        .formBox__select
+          = f.select :name ,[ ["１〜２日で発送",1], ["２〜３日で発送", 2], ["４〜７日で発送", 3] ] ,prompt: "選択してください"
+      %hr
+      .formBox
+        .formBox__description
+          価格（¥300〜9,999,999）
+        .formBox__texts.formBox__texts--price
+          %span
+            販売価格
+          %span
+            必須
+          %span
+            ¥
+          = f.number_field :price, class: "formBox__price--input", min: 1, max: 1000000
+      %hr
+      .formBox
+        .formBox__submitLow
+          = f.submit "出品する", class: "formBox__submit"
+          %div
+            = link_to "#",class: "linkBlue" do
+              もどる
+        .noteBox
+          禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして加盟店規約に同意したことになります。
