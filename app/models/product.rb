@@ -12,6 +12,9 @@ class Product < ApplicationRecord
      沖縄県: "沖縄県"
    }
 
+
+
    has_one :image
    accepts_nested_attributes_for :image
+   belongs_to :category
 end
