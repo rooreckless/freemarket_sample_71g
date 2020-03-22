@@ -1,14 +1,12 @@
 $(function(){
-  // カテゴリーセレクトボックスのオプションを作成
   function appendOption(category){
     var html = `<option name="product[category_id]" value="${category.id}" data-category="${category.id}">${category.name}</option>`;
     return html;
   }
-  // 子カテゴリーの表示作成
   function appendChidrenBox(insertHTML){
     var childSelectHtml = '';
     childSelectHtml = `<div class='formBox__select' id='categorySelect2'>
-    <select class="listing-select-wrapper__box--select2" id='parent_category2'><option value="---">---</option>
+    <select class="listing-select-wrapper__box--select2" id='parent_category2' name="product[category_id]"><option value="---">---</option>
     ${insertHTML}
     </select>
     </div>`;
@@ -25,10 +23,9 @@ $(function(){
     $('#categorySelect2').after(grandchildSelectHtml);
   }
 
-  // 親カテゴリー選択後のイベント
   $('#parent_category').on('change', function(){
-    var parentCategory = document.getElementById('parent_category').value; //選択された親カテゴリーの名前を取得
-    if (parentCategory != "---"){ //親カテゴリーが初期値でないことを確認
+    var parentCategory = document.getElementById('parent_category').value; 
+    if (parentCategory != "---"){ 
       $.ajax({
         url: 'get_category_children',
         type: 'GET',
@@ -55,8 +52,8 @@ $(function(){
 
 
   $('#categorySelect__box').on('change', '#parent_category2', function(){
-    var childId = $('#parent_category2 option:selected').data('category'); //選択された子カテゴリーのidを取得
-    if (childId != "---"){ //子カテゴリーが初期値でないことを確認
+    var childId = $('#parent_category2 option:selected').data('category');
+    if (childId != "---"){
       $.ajax({
         url: 'get_category_grandchildren',
         type: 'GET',
