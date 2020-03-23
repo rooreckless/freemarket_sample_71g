@@ -13,9 +13,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-    
-    Product.create(product_params)
-    redirect_to products_path
+    @product = Product.new(product_params)
+    if @product.save
+      redirect_to products_path
+    else
+      redirect_to new_product_path, notice: '空の値があります'
+    end
   end
 
   def show

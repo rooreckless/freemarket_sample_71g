@@ -1,9 +1,16 @@
+= render 'layouts/notifications'
 .productNewLow
   .productNew__logoLow
     = link_to "#" , class:"#" do
       %div.productNew__logo
   .formLow
     = form_for @product do |f|
+      - if @product.errors.any?
+        .formBox
+          %h2= "#{@product.errors.full_messages.count}件のエラーが発生しました。"
+          %ul
+            - @product.errors.full_messages.each do |message|
+              %li= message
       .formBox.formBox__image
         .formBox__texts
           %span
