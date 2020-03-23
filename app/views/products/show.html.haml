@@ -23,12 +23,13 @@
             カテゴリー
           .main-screen__wrap__box--wrap__record__right
             = link_to  "#", class: 'link' do
-              レディース
+              = @product.category.parent.parent.name
+              %br/
             = link_to  "#", class: 'link' do
-              %brトップス
+              = @product.category.parent.name
+              %br/
             = link_to  "#", class: 'link' do
-              %brTシャツ/カットソー(半袖/袖なし)
-        
+              = @product.category.name
         .main-screen__wrap__box--wrap__record
           .main-screen__wrap__box--wrap__record__left
             ブランド
@@ -39,7 +40,6 @@
             商品の状態
           .main-screen__wrap__box--wrap__record__right
             = @product.status
-
         .main-screen__wrap__box--wrap__record
           .main-screen__wrap__box--wrap__record__left
             発送元の地域
