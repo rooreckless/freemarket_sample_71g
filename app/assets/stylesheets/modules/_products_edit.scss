@@ -75,6 +75,32 @@
       }
     }
     &__right-bar{
+      width: 75%;
+      &__title{
+        font-size: 16px;
+        font-weight: bold;
+        margin: 16px 0;
+      }
+      &__side{
+        height: 120%;
+        background-color: #FFFFFF;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+        &__top{
+          padding: 10px 15px;
+          color: #757575;
+          background-color: #f5f5f5;
+          border-top-right-radius: 3px;
+          border-top-left-radius: 3px;
+          border: 1px solid #e5e5e5;
+        }
+        &__down{
+          padding: 15px 15px;
+          &__individual{
+            padding: 0 4px;
+          }
+        }
+      }
     }
   }
 }
