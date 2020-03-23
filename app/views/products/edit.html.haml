@@ -100,39 +100,49 @@
             .my-page__whole__left-bar__side__bottom__all
               設定
     .my-page__whole__right-bar
-      .my-page__whole__right-bar__title
+      .my-page__whole__right-bar__topic
         設定
-      .my-page__whole__right-bar__side
-        .my-page__whole__right-bar__side__top
+      .my-page__whole__right-bar__body
+        .my-page__whole__right-bar__body__top
           ユーザー情報
-        .my-page__whole__right-bar__side__bottom
-          .my-page__whole__right-bar__side__bottom___title
-            本人確認
-          .my-page__whole__right-bar__side__bottom___sentence
-            証明書を利用した本人確認します
-          .my-page__whole__right-bar__side__bottom___title
-            連絡先・住所の設定
-          .my-page__whole__right-bar__side__bottom___sentence
-            配送先の住所や電話番号などの情報
-          .my-page__whole__right-bar__side__bottom___title
-            ショップ・プロフィールの設定
-          .my-page__whole__right-bar__side__bottom___sentence
-            自分のプロフィールのタイトルやプロフィールの変更
-        .my-page__whole__right-bar__side__top
+        .my-page__whole__right-bar__body__bottom
+          .my-page__whole__right-bar__body__bottom__up
+            = link_to "#", class: "list" do
+              .my-page__whole__right-bar__body__bottom__up__title
+                本人確認
+              .my-page__whole__right-bar__body__bottom__up__sentence
+                証明書を利用した本人確認します
+          .my-page__whole__right-bar__body__bottom__up
+            = link_to "#", class: "list" do
+              .my-page__whole__right-bar__body__bottom__up__title
+                連絡先・住所の設定
+              .my-page__whole__right-bar__body__bottom__up__sentence
+                配送先の住所や電話番号などの情報
+          .my-page__whole__right-bar__body__bottom__down
+            = link_to "#", class: "list" do
+              .my-page__whole__right-bar__body__bottom__down__title
+                ショップ・プロフィールの設定
+              .my-page__whole__right-bar__body__bottom__down__sentence
+                自分のプロフィールのタイトルやプロフィールの変更
+        .my-page__whole__right-bar__body__top
           ログイン情報
-        .my-page__whole__right-bar__side__bottom
-          .my-page__whole__right-bar__side__bottom___title
-            ログイン情報の設定
-          .my-page__whole__right-bar__side__bottom___sentence
-            ログイン方法やメールアドレスの変更
-          .my-page__whole__right-bar__side__bottom___title
-            ログアウト
-          .my-page__whole__right-bar__side__bottom___sentence
-            ラクマからログアウトします
+        .my-page__whole__right-bar__body__bottom
+          .my-page__whole__right-bar__body__bottom__up
+            = link_to "#", class: "list" do
+              .my-page__whole__right-bar__body__bottom__up__title
+                ログイン情報の設定
+              .my-page__whole__right-bar__body__bottom__up__sentence
+                ログイン方法やメールアドレスの変更
+          .my-page__whole__right-bar__body__bottom__down
+            = link_to "#", class: "list" do
+              .my-page__whole__right-bar__body__bottom__down__title
+                ログアウト
+              .my-page__whole__right-bar__body__bottom__down__sentence
+                ラクマからログアウトします
 
 
 
-.logout
-  .logout__box
-    .logout__box__btn
-      ログアウト
+-# .logout
+-#   .logout__box
+-#     .logout__box__btn
+-#       ログアウト
