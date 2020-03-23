@@ -26,7 +26,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def destroy
+  def update
+    @product = Product.find(params[:id])
   end
 
   def get_category_children
