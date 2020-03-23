@@ -14,7 +14,19 @@ class Product < ApplicationRecord
 
 
 
-   has_one :image
+   has_one :image, dependent: :destroy
    accepts_nested_attributes_for :image
    belongs_to :category
+
+  #バリデーション記述
+  validates_associated :image
+  validates :image, presence: true
+  validates :status, presence: true
+  validates :name, presence: true
+  validates :explanation, presence: true
+  validates :brand, presence: true
+  validates :price, presence: true
+  validates :place, presence: true
+  validates :shipping_date, presence: true
+  validates :category_id, presence: true
 end
