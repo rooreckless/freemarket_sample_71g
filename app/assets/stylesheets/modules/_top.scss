@@ -10,7 +10,7 @@ header{
         height: 40px;
         width: 17%;
         margin:0 30px 10px 0;
-        background-image: url(material/logo/logo.png);
+        background-image: image-url("material/logo/logo.png");
         background-size: contain;
         background-repeat: no-repeat;
       }
@@ -31,7 +31,7 @@ header{
           height: 40px;
           background-color: $mainBlue;
           z-index: 50;  
-          background-image: url(material/icon/icon-search1.png);
+          background-image: image-url("material/icon/icon-search1.png");
           background-size: 60% 60%;
           background-repeat: no-repeat;
           background-position: center;
@@ -105,11 +105,11 @@ header{
         width: 100%;
         display: flex;
         &--app{
-          background-image: url(material/icon/appstore.png);
+          background-image: image-url("material/icon/appstore.png");
           @include appGooglebtns;
         }
         &--google{
-          background-image: url(material/icon/google.png);
+          background-image: image-url("material/icon/google.png");
           @include appGooglebtns;
         }
       }
@@ -156,13 +156,13 @@ header{
           position: relative;
           margin-bottom: 30px;
           &__left{
-            background-image: url(material/pict/pict-reason-01.jpg);
+            background-image: image-url("material/pict/pict-reason-01.jpg");
           }
           &__center{
-            background-image: url(material/pict/pict-reason-02.jpg);
+            background-image: image-url("material/pict/pict-reason-02.jpg");
           }
           &__right{
-            background-image: url(material/pict/pict-reason-03.jpg);
+            background-image: imag-url("material/pict/pict-reason-03.jpg");
           }
           & :nth-child(1){
             position: absolute;
@@ -195,7 +195,7 @@ header{
     }
   }
   & .thirdContentLow{
-    background-image: url(material/pict/bg-topMiddleDl-pict.jpg);
+    background-image: image-url("material/pict/bg-topMiddleDl-pict.jpg");
     background-position: bottom right;
     height: 400px;
     background-size: cover;
@@ -221,11 +221,11 @@ header{
         width: 100%;
         display: flex;
         &--app{
-          background-image: url(material/icon/appstore.png);
+          background-image: image-url("material/icon/appstore.png");
           @include appGooglebtns;
         }
         &--google{
-          background-image: url(material/icon/google.png);
+          background-image: image-url("material/icon/google.png");
           @include appGooglebtns;
         }
       }
@@ -267,13 +267,13 @@ header{
           height: 65%;
           background-size: cover;
           &--left{
-            background-image: url(material/icon/icon-01.png);
+            background-image: image-url("material/icon/icon-01.png");
           }
           &--center{
-            background-image: url(material/icon/icon-03.png);
+            background-image: image-url("material/icon/icon-03.png");
           }
           &--right{
-            background-image: url(material/icon/icon-04.png);
+            background-image: image-url("material/icon/icon-04.png");
           }
         }
         &__title{
@@ -354,7 +354,7 @@ header{
   }
   .seventhContentLow{
     padding: 100px 40px;
-    background-image: url(material/pict/bg-appBanner-pict.jpg);
+    background-image: image-url("material/pict/bg-appBanner-pict.jpg");
     position: relative;
     background-size: cover;
     background-position: center;
@@ -378,7 +378,7 @@ header{
         display: flex;
         justify-content: center;
         &--app{
-          background-image: url(material/icon/appstore.png);
+          background-image: image-url("material/icon/appstore.png");
           height: 100%;
           width: 10%;
           margin-right: 10px;
@@ -390,7 +390,7 @@ header{
           }
         }
         &--google{
-          background-image: url(material/icon/google.png);
+          background-image: image-url("material/icon/google.png");
           height: 100%;
           width: 10%;
           margin-right: 10px;
@@ -438,7 +438,7 @@ header{
     max-width: 160px;
     width: 100%;
     margin: 0 auto;
-    background-image: url(material/logo/logo-white.png);
+    background-image: image-url("material/logo/logo-white.png");
     height: 46px;
     background-size: cover;
   }
@@ -464,7 +464,7 @@ header{
   & div{
     height: 54px;
     width: 54px;
-    background-image: url(material/icon/icon_camera.png);
+    background-image: image-url("material/icon/icon_camera.png");
     background-size: cover;
     background-position: center;
     margin: 0 auto;
