@@ -18,11 +18,36 @@
               %span.form-require 必須
               %br/
               = f.email_field :email, autofocus: true, class: 'form-control', placeholder:"例）PC・携帯どちらでも可"
+
+
             .field
-              = f.label :パスワード
-              %span.form-require 必須
+              = f.label :password
+              - if @minimum_password_length
+                %em
+                  (#{@minimum_password_length} characters minimum)
               %br/
-              = f.password_field :password, autofocus: true, class: 'form-control', placeholder:"例）７文字以上半角英数字"
+              = f.password_field :password, autocomplete: "new-password"
+            .field
+              = f.label :password_confirmation
+              %br/
+              = f.password_field :password_confirmation, autocomplete: "new-password"
+
+              
+              -# .field
+              -#   = f.label :password
+              -#   - if @minimum_password_length
+              -#     %em
+              -#       (#{@minimum_password_length} characters minimum)
+              -#   %br/
+              -#   = f.password_field :password, autocomplete: "new-password
+
+              
+              -# = f.label :パスワード
+              -# %span.form-require 必須
+              -# %br/
+              -# = f.password_field :password_confirmation, autofocus: true, class: 'form-control', placeholder:"例）７文字以上半角英数字"
+
+
             .field
               .main__new__form__input
                 %p ※ 英字と数字の両方を含めて設定してください
