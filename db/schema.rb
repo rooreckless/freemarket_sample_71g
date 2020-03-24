@@ -26,6 +26,13 @@ ActiveRecord::Schema.define(version: 2020_03_23_033909) do
     t.integer "user_id", null: false
   end
 
+  create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "ancestry"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "confirms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name_last_name", null: false
     t.string "name_first_name", null: false
@@ -55,6 +62,8 @@ ActiveRecord::Schema.define(version: 2020_03_23_033909) do
     t.string "place", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -70,4 +79,5 @@ ActiveRecord::Schema.define(version: 2020_03_23_033909) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "products", "categories"
 end

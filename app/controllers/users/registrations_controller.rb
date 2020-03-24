@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -12,10 +12,61 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    binding.pry
+    # デバッグ用の表示です。
+    # p "---registration-create---"
+    # p params.require(:user).require(:confirm_attributes)["birthday(1i)"]
+    # p params.require(:user).require(:confirm_attributes)["birthday(1i)"].class
+    # p params.require(:user).require(:confirm_attributes)["birthday(2i)"]
+    # p params.require(:user).require(:confirm_attributes)["birthday(2i)"].class
+    # p params.require(:user).require(:confirm_attributes)["birthday(3i)"]
+    # p params.require(:user).require(:confirm_attributes)["birthday(3i)"].class
+    
+    # まず、params.require(:user).require(:confirm_attributes)["birthday(2i)"]が1桁なら、2桁にする処理をします。
+    if params.require(:user).require(:confirm_attributes)["birthday(2i)"].length==1
+      # デバッグ用の表示です。
+      # p "birthday(2i) -- is 1 length! changing 2 length"
+      params.require(:user).require(:confirm_attributes)["birthday(2i)"]=(0.to_s+params.require(:user).require(:confirm_attributes)["birthday(2i)"])
+      # p params.require(:user).require(:confirm_attributes)["birthday(2i)"]
+    end
+    
+    # 次に、params.require(:user).require(:confirm_attributes)["birthday(3i)"]が1桁なら、同様に処理します。
+    if params.require(:user).require(:confirm_attributes)["birthday(3i)"].length==1
+      # デバッグ用の表示です。
+      # p "birthday(3i) -- is 1 length! changing 2 length"
+      params.require(:user).require(:confirm_attributes)["birthday(3i)"]=(0.to_s+params.require(:user).require(:confirm_attributes)["birthday(3i)"])
+      # p params.require(:user).require(:confirm_attributes)["birthday(3i)"]
+    end
+
+    #params.require(:user).require(:confirm_attributes)["birthday(1i)"]はString型なので、2iと文字列結合。さらにその後3iとも結合します。 
+    params.require(:user).require(:confirm_attributes)["birthday(1i)"].concat(params.require(:user).require(:confirm_attributes)["birthday(2i)"])
+    params.require(:user).require(:confirm_attributes)["birthday(1i)"].concat(params.require(:user).require(:confirm_attributes)["birthday(3i)"])
+    # デバッグ用の表示です。
+    # p "---concated-birthday1i---"
+    # p params.require(:user).require(:confirm_attributes)["birthday(1i)"]
+    
+    # 結合結果の1iを、params.require(:user).require(:confirm_attributes)[:birthday]でbirthdayというキーを作り、値として挿入
+    params.require(:user).require(:confirm_attributes)[:birthday]=params.require(:user).require(:confirm_attributes)["birthday(1i)"]
+    # 結合したのでparams.require(:user).require(:confirm_attributes)["birthday(2i)"]と3iをけします。
+    params.require(:user).require(:confirm_attributes).delete("birthday(2i)")
+    params.require(:user).require(:confirm_attributes).delete("birthday(3i)")
+    params.require(:user).require(:confirm_attributes).delete("birthday(1i)")
+    
+    # デバッグ用の表示です。
+    # p "---insert-and-print-birday---"
+    # p params.require(:user).require(:confirm_attributes)["birthday"]
+
     @user = User.new(user_params)
-    @user.save
-    redirect_to user_session_path(@user)
+    @user.save!
+    binding.pry
+    # 上まではuserテーブルに保存する方法でした。
+    # @confirm=Confirm.new(confirm_params)
+    # @confirm.save!
+    # p "----confirmed----"
+
+
+    # 現在このcreateアクションの終了後のビューの表示(下のredirect_to)を単純にコメントアウトを外すとエラーでした。
+    # 調整願えますでしょうか(アダチ)
+    # redirect_to user_session_path(@user)
   end
 
   # GET /resource/edit
@@ -46,10 +97,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def user_params
-    params.require(:user).permit(:nikname, confirm_attributes:[:id, :name_last_name, :name_first_name, :last_name_kana, :first_name_kana , :birthday, :user_id])
+    params.require(:user).permit(:nikname, :email,:password,confirm_attributes:[:id, :name_last_name, :name_first_name, :last_name_kana, :first_name_kana , :birthday])
   end
 
-  
+  def confirm_params
+    params.require(:user).require(:confirm_attributes).permit(:id, :name_last_name, :name_first_name, :last_name_kana, :first_name_kana , :birthday[1i])
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
