@@ -119,7 +119,7 @@
           新規投稿商品 
       .fifthContent__lists
         - @product_new.each do |new|
-          = link_to "#", class: "#" do
+          = link_to product_path(new.id), class: "#" do
             .fifthContent__list
               .fifthContent__list--image
                 - new.images.each do |image|
@@ -144,7 +144,7 @@
           アーカイバ
       .fifthContent__lists
         - @product_random.each do |random|
-          = link_to "#", class: "#" do
+          = link_to product_path(random.id), class: "#" do
             .fifthContent__list
               .fifthContent__list--image
                 - random.images.each do |image|
