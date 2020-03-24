@@ -21,9 +21,10 @@
 
 
             .field
-              = f.label :パスワード
-              - if @minimum_password_length
-                %span.form-require 必須
+              = f.label :パスワード（７文字以上）
+              -# - if @minimum_password_length
+              
+              %span.form-require 必須
               %br/
               = f.password_field :password,class: 'form-control', autocomplete: "new-password"
             .field
