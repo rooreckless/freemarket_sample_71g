@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
 
   def index
+    @product = Product.all.order("created_at DESC")
+    User.where('buyer_id = null')
   end
 
   def new
