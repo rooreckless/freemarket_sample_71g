@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
 
   def index
-    @product = Product.all.order("created_at DESC")
+    @product_new = Product.all.order("created_at DESC").limit(3)
     User.where('buyer_id = null')
   end
 
