@@ -19,7 +19,13 @@
             必須
           .formBox__secondTexts
             商品の画像をアップロードできます。
-        = f.fields_for :image do |i|
+        = f.fields_for :images do |i|
+          = i.label :image, class: 'formBox__imageBox' do
+            = i.file_field :image, class: "formBox__imageBox--image"
+            %i.fas.fa-camera
+            %div
+              画像をアップロード
+        = f.fields_for :images do |i|
           = i.label :image, class: 'formBox__imageBox' do
             = i.file_field :image, class: "formBox__imageBox--image"
             %i.fas.fa-camera
