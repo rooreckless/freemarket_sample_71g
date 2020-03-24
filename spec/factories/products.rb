@@ -10,5 +10,8 @@ FactoryBot.define do
     created_at           {"2020-03-23 11:53:44"}
     updated_at           {"020-03-23 11:53:44"}
     category_id          {"5"}
+    after(:build) do |product|                          
+      product.images << build(:image, product: product)
+    end  
   end
 end
