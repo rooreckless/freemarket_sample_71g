@@ -18,7 +18,7 @@
           %span
             必須
           .formBox__secondTexts
-            商品の画像をアップロードできます!!!!!!!
+            商品の画像をアップロードできます。
         = f.fields_for :images do |i|
           = i.label :image, class: 'formBox__imageBox',for: "product_images_attributes_0_image" do
             = i.file_field :image, class: "formBox__imageBox--image",id: "product_images_attributes_0_image"
