@@ -66,12 +66,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # 現在このcreateアクションの終了後のビューの表示(下のredirect_to)を単純にコメントアウトを外すとエラーでした。
     # 調整願えますでしょうか(アダチ)
-<<<<<<< HEAD
-    redirect_to  root_path
-=======
+
     # redirect_to user_session_path(@user)
     redirect_to new_address_path
->>>>>>> 04ad37380c7cb03d4a0a1793e47173c4197a911f
+
   end
 
   # GET /resource/edit
