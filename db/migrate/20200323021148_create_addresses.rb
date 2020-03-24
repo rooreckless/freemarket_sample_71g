@@ -3,7 +3,7 @@ class CreateAddresses < ActiveRecord::Migration[5.2]
     create_table :addresses do |t|
       t.string :shipping_name_last_name,         null: false
       t.string :shipping_name_first_name,        null: false
-      t.string :shipping_first_name_kana,        null: false
+      t.string :shipping_last_name_kana,        null: false
       t.string :shipping_first_name_kana,        null: false
       t.string :postcode,                        null: false
       t.string :state,                           null: false                       

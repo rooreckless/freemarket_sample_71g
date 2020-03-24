@@ -6,7 +6,7 @@
     width: 50%;
     margin-left: 25%;
     background-color: #fff;
-    height: 1300px;
+    height: 1200px;
     &__up{
       text-align: center;
       font-size: 22px;
@@ -19,12 +19,7 @@
       width: 45%;
       &__shipping-name{
         &__up{
-          padding-top: 30px;
           display: flex;
-          &__1{
-            font-size: 14px;
-            padding-top: 4px;
-          }
           &__2{
             color: white;
             background-color: red;
@@ -39,18 +34,9 @@
           width: 100%;
           &__1{
             padding-right: 10px;
-            // margin-top: 8px;
+            padding-top: 30px;
             margin-right: 8px;
             & .form-control{
-              // border: solid 1px #ccc;
-              // width: calc(50% - 8px);
-              // padding: 10px 16px 8px;
-              // height: 48px;
-              // border-radius: 4px;
-              // font-size: 16px;
-              // line-height: 1.5;
-              // // outline: none;
-              // box-shadow: 0 0 0 0;
               width: calc(85% - 8px);
               padding: 10px 16px 8px;
               border-radius: 4px;
@@ -58,40 +44,7 @@
               background: #fff;
               line-height: 1.5;
               font-size: 16px;
-            }
-          }
-        }
-      }
-      &__one-sentence{
-        &__up{
-          padding-top: 30px;
-          display: flex;
-          &__1{
-            font-size: 14px;
-            padding-top: 5px;
-          }
-          &__2{
-            color: white;
-            background-color: #EA352D;
-            margin-left: 8px;
-            font-size: 12px;
-            border-radius: 2px;
-            border-style: solid;
-          }
-        }
-        &__down{
-          &__1{
-            padding-right: 10px;
-            margin-top: 8px;
-            margin-right: 8px;
-            & .form-field{
-              width: 100%;
-              padding: 10px 16px 8px;
-              border-radius: 4px;
-              border: 1px solid #ccc;
-              background: #fff;
-              line-height: 1.5;
-              font-size: 16px;
+              margin-right: 8px;
             }
           }
         }
@@ -109,29 +62,6 @@
           }
         }
       }
-    }
-  }
-  &__footer{
-    height: 30%;
-    text-align: center;
-    width: 100%;
-    &__words{
-      padding-top: 40px;
-      display: flex;
-      justify-content: center;
-      width: 80%;
-      margin: 0 auto;
-      font-size: 12px;
-      &__word{
-        margin-left: 8px;
-      }
-    }
-    &__photo{
-      padding-top: 30px;
-    }
-    &__final{
-      padding-bottom: 30px;
-      font-size: 13px;
     }
   }
 }
