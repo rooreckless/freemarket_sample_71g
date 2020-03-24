@@ -6,8 +6,8 @@
         %h2 会員情報登録
       .main__new__form
         .main__new__form__input
-          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-            = render "devise/shared/error_messages", resource: resource
+          = form_for(@user, url: user_registration_path) do |f|
+            = render "devise/shared/error_messages", resource: @user
             .field
               = f.label :ニックネーム
               %span.form-require 必須
@@ -29,38 +29,44 @@
             .field
               %h1 本人確認 
               %h1 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他のお客さまに公開されることはありません。
-            .field_1
-              = f.label :お名前（全角）
-              %span.form-require 必須
-              %br/
-              .form-control_1
-                = f.password_field :encrypted_password, autofocus: true, class: 'form-control_1_2', placeholder:"例）佐藤"
-                = f.password_field :encrypted_password, autofocus: true, class: 'form-control_1_2', placeholder:"例）孝二郎"
-            .field_1
-              = f.label :お名前カナ（全角）
-              %span.form-require 必須
-              %br/
-              .form-control_1
-                = f.password_field :encrypted_password, autofocus: true, class: 'form-control_1_2', placeholder:"例）サトウ"
-                = f.password_field :encrypted_password, autofocus: true, class: 'form-control_1_2', placeholder:"例）コウジロウ"
+
+            = f.fields_for :confirm do |i|
               .field_1
-                %label{:for => "birthday"} 生年月日
+                = f.label :お名前（全角）
                 %span.form-require 必須
                 %br/
                 .form-control_1
-                  .select-wrap
-                    %i.icon-arrow-bottom
-                    %select.select-default{:name => "year"}
-                  %span 年
-                  .select-wrap.select-wrap__month
-                    %i.icon-arrow-bottom
-                    %select.select-default{:name => "month"}
-                  %span 月
-                  .select-wrap.select-wrap__day
-                    %i.icon-arrow-bottom
-                    %select.select-default{:name => "day"}
-                  %span 日
-                %input{:name => "birthday", :type => "hidden", :value => ""}/
+                  = i.text_field :name_last_name, class: 'form-control_1_2', placeholder:"例）佐藤"
+                  = i.text_field :name_first_name, autofocus: true, class: 'form-control_1_2', placeholder:"例）孝二郎"
+              .field_1
+                = i.label :お名前カナ（全角）
+                %span.form-require 必須
+                %br/
+                .form-control_1
+                  = i.text_field :last_name_kana, autofocus: true, class: 'form-control_1_2', placeholder:"例）サトウ"
+                  = i.text_field :first_name_kana, autofocus: true, class: 'form-control_1_2', placeholder:"例）コウジロウ"
+                .field_1
+                  %label{for:"birthday"} 生年月日
+                  %span.form-require 必須
+                  %br/
+                  .form-control_1
+                    .birth_date_field
+                      = f.label :birth_date
+                      = i.date_select(                  |
+                        :birthday,                      |
+                        start_year: 1930,               |
+                        end_year: (Time.now.year - 18), |
+                        default: Date.new(1989, 1, 1))  |
+
+                  -#   .select-wrap.select-wrap__month
+                  -#     %i.icon-arrow-bottom
+                  -#     %select.select-default{name:"month"}
+                  -#   %span 月
+                  -#   .select-wrap.select-wrap__day
+                  -#     %i.icon-arrow-bottom
+                  -#     %select.select-default{name:"day"}
+                  -#   %span 日
+                  -# %input{:name => "birthday", :type => "hidden", :value => ""}/
                 .clearfix
               
               .field
@@ -76,9 +82,9 @@
               
               .text.linkBlue
                 %h 本人情報の登録について＞
-
-              .field
-                %p This site is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
+     
+            .field
+              = f.submit "送信する", class: "formBox__submit"
   = render 'devise/footer'
 
 
