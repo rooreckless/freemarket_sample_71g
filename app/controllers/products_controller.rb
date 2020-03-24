@@ -1,8 +1,8 @@
 class ProductsController < ApplicationController
 
   def index
-    @product_new = Product.all.order("created_at DESC").limit(3)
-    User.where('buyer_id = null')
+    @product_new = Product.all.order("created_at DESC").limit(3).where('buyer_id = null')
+    @product_random = Product.all.order("RANDOM()").limit(3).where('buyer_id = null')
   end
 
   def new
