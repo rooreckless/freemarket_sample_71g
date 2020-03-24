@@ -57,7 +57,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     @user = User.new(user_params)
     @user.save!
-    binding.pry
+    # binding.pry
     # 上まではuserテーブルに保存する方法でした。
     # @confirm=Confirm.new(confirm_params)
     # @confirm.save!
@@ -67,6 +67,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     # 現在このcreateアクションの終了後のビューの表示(下のredirect_to)を単純にコメントアウトを外すとエラーでした。
     # 調整願えますでしょうか(アダチ)
     # redirect_to user_session_path(@user)
+    redirect_to new_address_path
   end
 
   # GET /resource/edit

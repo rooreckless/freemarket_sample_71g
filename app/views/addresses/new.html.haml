@@ -1,0 +1,143 @@
+.address
+  .address__header
+    .address__header__logo
+      = image_tag src='material/logo/logo.png', size: '185x49'
+  .address__content
+    .address__content__up
+      会員情報入力(住所)
+    .address__content__down
+      -# .address__content__down__shipping-name
+      -#   .address__content__down__shipping-name__up
+      -#     .address__content__down__shipping-name__up__1
+      -#       宛先の名前(全角)
+      -#     .address__content__down__shipping-name__up__2
+      -#       必須
+      -#   .address__content__down__shipping-name__down
+      -#     .address__content__down__shipping-name__down__1
+      -#     .address__content__down__shipping-name__down__2
+      -# .address__content__down__shipping-kana
+      -# .address__content__down__postcode
+      -# .address__content__down__state
+      -# .address__content__down__city
+      -# .address__content__down__address-line
+      -# .address__content__down__building-name
+      -# .address__content__down__rrom-number
+      -# .address__content__down__phone-number
+      .address__content__down__shipping-name
+        .address__content__down__shipping-name__up
+          .address__content__down__shipping-name__up__1
+            宛先の名前(全角)
+          .address__content__down__shipping-name__up__2
+            必須
+        -# .address__content__down__shipping-name__down
+        = form_with local: true, class: 'down' do |f|
+          .address__content__down__shipping-name__down
+            .address__content__down__shipping-name__down__1
+              = f.text_field :"名前(全角)", class: 'form-control', placeholder: '例)山田'
+            .address__content__down__shipping-name__down__1
+              = f.text_field :"名前", class: 'form-control', placeholder: '例)彩'
+        .address__content__down__shipping-name
+        .address__content__down__shipping-name__up
+          .address__content__down__shipping-name__up__1
+            宛先の名前(カナ)
+          .address__content__down__shipping-name__up__2
+            必須
+        -# .address__content__down__shipping-name__down
+        = form_with local: true, class: 'down' do |f|
+          .address__content__down__shipping-name__down
+            .address__content__down__shipping-name__down__1
+              = f.text_field :"名前(全角)", class: 'form-control', placeholder: '例)ヤマダ'
+            .address__content__down__shipping-name__down__1
+              = f.text_field :"名前", class: 'form-control', placeholder: '例)アヤ'
+      .address__content__down__one-sentence
+        .address__content__down__one-sentence__up
+          .address__content__down__one-sentence__up__1
+            郵便番号
+          .address__content__down__one-sentence__up__2
+            必須
+        = form_with local: true, class: 'down' do |f|
+          .address__content__down__one-sentence__down
+            .address__content__down__one-sentence__down__1
+              = f.text_field :"郵便番号", class: 'form-field', placeholder: '000-0000'
+      .address__content__down__one-sentence
+        .address__content__down__one-sentence__up
+          .address__content__down__one-sentence__up__1
+            都道府県
+          .address__content__down__one-sentence__up__2
+            必須
+        = form_with local: true, class: 'down' do |f|
+          .address__content__down__one-sentence__down
+            .address__content__down__one-sentence__down__1
+              = f.text_field :"都道府県", class: 'form-field', placeholder: '都道府県'
+      .address__content__down__one-sentence
+        .address__content__down__one-sentence__up
+          .address__content__down__one-sentence__up__1
+            市区町村
+          .address__content__down__one-sentence__up__2
+            必須
+        = form_with local: true, class: 'down' do |f|
+          .address__content__down__one-sentence__down
+            .address__content__down__one-sentence__down__1
+              = f.text_field :"市区町村", class: 'form-field', placeholder: '市区町村'
+      .address__content__down__one-sentence
+        .address__content__down__one-sentence__up
+          .address__content__down__one-sentence__up__1
+            町内番地
+          .address__content__down__one-sentence__up__2
+            必須
+        = form_with local: true, class: 'down' do |f|
+          .address__content__down__one-sentence__down
+            .address__content__down__one-sentence__down__1
+              = f.text_field :"町内番地", class: 'form-field', placeholder: '町内番地'
+      .address__content__down__one-sentence
+        .address__content__down__one-sentence__up
+          .address__content__down__one-sentence__up__1
+            建物名
+          -# .address__content__down__one-sentence__up__2
+          -#   必須
+        = form_with local: true, class: 'down' do |f|
+          .address__content__down__one-sentence__down
+            .address__content__down__one-sentence__down__1
+              = f.text_field :"建物名", class: 'form-field', placeholder: '建物名'
+      .address__content__down__one-sentence
+        .address__content__down__one-sentence__up
+          .address__content__down__one-sentence__up__1
+            部屋番号
+          -# .address__content__down__one-sentence__up__2
+          -#   必須
+        = form_with local: true, class: 'down' do |f|
+          .address__content__down__one-sentence__down
+            .address__content__down__one-sentence__down__1
+              = f.text_field :"部屋番号", class: 'form-field', placeholder: '000号室'
+      .address__content__down__one-sentence
+        .address__content__down__one-sentence__up
+          .address__content__down__one-sentence__up__1
+            電話番号
+          .address__content__down__one-sentence__up__2
+            必須
+        = form_with local: true, class: 'down' do |f|
+          .address__content__down__one-sentence__down
+            .address__content__down__one-sentence__down__1
+              = f.text_field :"電話番号", class: 'form-field', placeholder: '000-0000-0000'
+      .address__content__down__btn
+      = form_with local: true, class: 'down' do |f|
+        .address__content__down__btn__all
+          = f.submit "次へ進む", class: 'btn'
+
+
+  .address__footer
+    .address__footer__words
+      .address__footer__words__word
+        = link_to "#" , class: "linkBlack" do
+          プライバシーポリシー
+      .address__footer__words__word
+        = link_to "#" , class: "linkBlack" do
+          メルカリ利用規約
+      .address__footer__words__word
+        = link_to "#" , class: "linkBlack" do
+          特定商取引に関する表記
+    .address__footer__photo
+      = image_tag src='material/logo/logo.png', size: '80x65'
+    .address__footer__final
+      © Mercari, Inc.
+      
