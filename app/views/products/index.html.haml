@@ -154,7 +154,9 @@
                 product1
               .itemInformations
                 %div
-                  10000円
+                  - @product_new.each do |random|
+                    = random.price
+                    円
                 %div
                   %i.fa.fa-star.likeIcon
                   ０
