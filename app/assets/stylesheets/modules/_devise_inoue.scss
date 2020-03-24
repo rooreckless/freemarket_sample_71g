@@ -1,3 +1,21 @@
+#user_confirm_attributes_birthday_1i{
+  height: 40px;
+  width: 100px;
+  background-color: #fff;
+}
+#user_confirm_attributes_birthday_2i{
+  height: 40px;
+  width: 60px;
+  margin-left: 10px;
+  background-color: #fff;
+}
+#user_confirm_attributes_birthday_3i{
+  height: 40px;
+  width: 60px;
+  margin-left: 10px;
+  background-color: #fff;
+}
+
 .sign_in_row{
   height: calc(100vh - 300px);
   width: 100vw;
@@ -78,11 +96,11 @@
             width: 100%;
             display: flex;  
             justify-content: space-between;  
-          & .select-default {
-            height: 44px;
-            width: 76px;
-            background-color: white;
-          }
+            &__field{
+              height: 44px;
+              width: 76px;
+              background-color: #fff;
+            }
             & .form-control_1_2{
               margin-right: 8px;
               width: calc(50% - 8px);
@@ -93,16 +111,15 @@
               line-height: 1.5;
               font-size: 16px;
             }
-            }
+          }
         }
         .field__next{
           margin-top: 24px;
           width: 100%;
-         
-          color: white;
+          color: #fff;
           text-align: center;
           height: 55px;
-          a{
+           &__submit{
             color: white;
             text-decoration: none;
             line-height: 48px;
