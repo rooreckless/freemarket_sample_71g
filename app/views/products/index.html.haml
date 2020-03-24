@@ -116,52 +116,25 @@
     .fifthContent__box
       .fifthContent__box--title
         = link_to "#", class: "linkBlue" do
-          新規投稿商品
+          新規投稿商品 
       .fifthContent__lists
-        = link_to "#", class: "#" do
-          .fifthContent__list
-            .fifthContent__list--image
-            .fifthContent__list--underBox
-              %div.itemName
-                product3
-              .itemInformations
+        - @product_new.each do |new|
+          = link_to "#", class: "#" do
+            .fifthContent__list
+              .fifthContent__list--image
+                - new.images.each do |image|
+                  = image_tag image.image.url
+              .fifthContent__list--underBox
+                %div.itemName
+                  = new.name
+                .itemInformations
+                  %div
+                    = new.price
+                  %div
+                    %i.fa.fa-star.likeIcon
+                    ０
                 %div
-                  30000円
-                %div
-                  %i.fa.fa-star.likeIcon
-                  ０
-              %div
-                (税込)
-        = link_to "#", class: "#" do
-          .fifthContent__list
-            .fifthContent__list--image
-            .fifthContent__list--underBox
-              %div.itemName
-                product2
-              .itemInformations
-                %div
-                  20000円
-                %div
-                  %i.fa.fa-star.likeIcon
-                  ０
-              %div
-                (税込)
-        = link_to "#", class: "#" do
-          .fifthContent__list
-            .fifthContent__list--image
-            .fifthContent__list--underBox
-              %div.itemName
-                product1
-              .itemInformations
-                %div
-                  - @product_new.each do |random|
-                    = random.price
-                    円
-                %div
-                  %i.fa.fa-star.likeIcon
-                  ０
-              %div
-                (税込)
+                  (税込)
   .fifthContentLow.sixContentLow
     .fifthContent__title
       ピックアップブランド
@@ -170,48 +143,23 @@
         = link_to "#", class: "linkBlue" do
           アーカイバ
       .fifthContent__lists
-        = link_to "#", class: "#" do
-          .fifthContent__list
-            .fifthContent__list--image
-            .fifthContent__list--underBox
-              %div.itemName
-                product3
-              .itemInformations
+        - @product_random.each do |random|
+          = link_to "#", class: "#" do
+            .fifthContent__list
+              .fifthContent__list--image
+                - random.images.each do |image|
+                  = image_tag image.image.url
+              .fifthContent__list--underBox
+                %div.itemName
+                  = random.name
+                .itemInformations
+                  %div
+                    = random.price
+                  %div
+                    %i.fa.fa-star.likeIcon
+                    ０
                 %div
-                  30000円
-                %div
-                  %i.fa.fa-star.likeIcon
-                  ０
-              %div
-                (税込)
-        = link_to "#", class: "#" do
-          .fifthContent__list
-            .fifthContent__list--image
-            .fifthContent__list--underBox
-              %div.itemName
-                product2
-              .itemInformations
-                %div
-                  20000円
-                %div
-                  %i.fa.fa-star.likeIcon
-                  ０
-              %div
-                (税込)
-        = link_to "#", class: "#" do
-          .fifthContent__list
-            .fifthContent__list--image
-            .fifthContent__list--underBox
-              %div.itemName
-                product1
-              .itemInformations
-                %div
-                  10000円
-                %div
-                  %i.fa.fa-star.likeIcon
-                  ０
-              %div
-                (税込)
+                  (税込)
   .seventhContentLow
     .seventhContent
       .seventhContent__title
