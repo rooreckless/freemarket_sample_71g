@@ -8,68 +8,64 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     @user = User.new
     @user.build_confirm
+    puts "aaaa"
   end
 
   # POST /resource
   def create
-    # デバッグ用の表示です。
-    # p "---registration-create---"
-    # p params.require(:user).require(:confirm_attributes)["birthday(1i)"]
-    # p params.require(:user).require(:confirm_attributes)["birthday(1i)"].class
-    # p params.require(:user).require(:confirm_attributes)["birthday(2i)"]
-    # p params.require(:user).require(:confirm_attributes)["birthday(2i)"].class
-    # p params.require(:user).require(:confirm_attributes)["birthday(3i)"]
-    # p params.require(:user).require(:confirm_attributes)["birthday(3i)"].class
-    
-    # まず、params.require(:user).require(:confirm_attributes)["birthday(2i)"]が1桁なら、2桁にする処理をします。
-    if params.require(:user).require(:confirm_attributes)["birthday(2i)"].length==1
+    # パスワード入力欄からの内容と、確認用パスワード入力欄の内容が
+    if params.require(:user)["password"]==params.require(:user)["password_confirmation"]
+      
+      # まず、params.require(:user).require(:confirm_attributes)["birthday(2i)"]が1桁なら、2桁にする処理をします。
+      if params.require(:user).require(:confirm_attributes)["birthday(2i)"].length==1
+        # デバッグ用の表示です。
+        # p "birthday(2i) -- is 1 length! changing 2 length"
+        params.require(:user).require(:confirm_attributes)["birthday(2i)"]=(0.to_s+params.require(:user).require(:confirm_attributes)["birthday(2i)"])
+        # p params.require(:user).require(:confirm_attributes)["birthday(2i)"]
+      end
+      
+      # 次に、params.require(:user).require(:confirm_attributes)["birthday(3i)"]が1桁なら、同様に処理します。
+      if params.require(:user).require(:confirm_attributes)["birthday(3i)"].length==1
+        # デバッグ用の表示です。
+        # p "birthday(3i) -- is 1 length! changing 2 length"
+        params.require(:user).require(:confirm_attributes)["birthday(3i)"]=(0.to_s+params.require(:user).require(:confirm_attributes)["birthday(3i)"])
+        # p params.require(:user).require(:confirm_attributes)["birthday(3i)"]
+      end
+
+      #params.require(:user).require(:confirm_attributes)["birthday(1i)"]はString型なので、2iと文字列結合。さらにその後3iとも結合します。 
+      params.require(:user).require(:confirm_attributes)["birthday(1i)"].concat(params.require(:user).require(:confirm_attributes)["birthday(2i)"])
+      params.require(:user).require(:confirm_attributes)["birthday(1i)"].concat(params.require(:user).require(:confirm_attributes)["birthday(3i)"])
       # デバッグ用の表示です。
-      # p "birthday(2i) -- is 1 length! changing 2 length"
-      params.require(:user).require(:confirm_attributes)["birthday(2i)"]=(0.to_s+params.require(:user).require(:confirm_attributes)["birthday(2i)"])
-      # p params.require(:user).require(:confirm_attributes)["birthday(2i)"]
-    end
-    
-    # 次に、params.require(:user).require(:confirm_attributes)["birthday(3i)"]が1桁なら、同様に処理します。
-    if params.require(:user).require(:confirm_attributes)["birthday(3i)"].length==1
+      # p "---concated-birthday1i---"
+      # p params.require(:user).require(:confirm_attributes)["birthday(1i)"]
+      
+      # 結合結果の1iを、params.require(:user).require(:confirm_attributes)[:birthday]でbirthdayというキーを作り、値として挿入
+      params.require(:user).require(:confirm_attributes)[:birthday]=params.require(:user).require(:confirm_attributes)["birthday(1i)"]
+      # 結合したのでparams.require(:user).require(:confirm_attributes)["birthday(2i)"]と3iをけします。
+      params.require(:user).require(:confirm_attributes).delete("birthday(2i)")
+      params.require(:user).require(:confirm_attributes).delete("birthday(3i)")
+      params.require(:user).require(:confirm_attributes).delete("birthday(1i)")
+      
       # デバッグ用の表示です。
-      # p "birthday(3i) -- is 1 length! changing 2 length"
-      params.require(:user).require(:confirm_attributes)["birthday(3i)"]=(0.to_s+params.require(:user).require(:confirm_attributes)["birthday(3i)"])
-      # p params.require(:user).require(:confirm_attributes)["birthday(3i)"]
+      # p "---insert-and-print-birday---"
+      # p params.require(:user).require(:confirm_attributes)["birthday"]
+
+      @user = User.new(user_params)
+      # バリデーションにかかるとsaveできないので、確かめます
+      if @user.valid?
+        @user.save!
+      else
+        # バリデーションにかかった場合、flashメッセージを表示しつつ、新規ユーザ登録画面にリダイレクトします。
+        redirect_to new_user_registration_path, notice: @user.errors.full_messages
+        return
+      end
+      # 保存が完了したら、会員情報入力画面にリダイレクトします。
+      redirect_to new_address_path
+    else
+      # パスワードが一致しない場合、エラーメッセージをflashで表示し、新規登録画面へリダイレクトします。
+      redirect_to new_user_registration_path, notice: 'パスワードが一致しません。'
+      # render "new"
     end
-
-    #params.require(:user).require(:confirm_attributes)["birthday(1i)"]はString型なので、2iと文字列結合。さらにその後3iとも結合します。 
-    params.require(:user).require(:confirm_attributes)["birthday(1i)"].concat(params.require(:user).require(:confirm_attributes)["birthday(2i)"])
-    params.require(:user).require(:confirm_attributes)["birthday(1i)"].concat(params.require(:user).require(:confirm_attributes)["birthday(3i)"])
-    # デバッグ用の表示です。
-    # p "---concated-birthday1i---"
-    # p params.require(:user).require(:confirm_attributes)["birthday(1i)"]
-    
-    # 結合結果の1iを、params.require(:user).require(:confirm_attributes)[:birthday]でbirthdayというキーを作り、値として挿入
-    params.require(:user).require(:confirm_attributes)[:birthday]=params.require(:user).require(:confirm_attributes)["birthday(1i)"]
-    # 結合したのでparams.require(:user).require(:confirm_attributes)["birthday(2i)"]と3iをけします。
-    params.require(:user).require(:confirm_attributes).delete("birthday(2i)")
-    params.require(:user).require(:confirm_attributes).delete("birthday(3i)")
-    params.require(:user).require(:confirm_attributes).delete("birthday(1i)")
-    
-    # デバッグ用の表示です。
-    # p "---insert-and-print-birday---"
-    # p params.require(:user).require(:confirm_attributes)["birthday"]
-
-    @user = User.new(user_params)
-    @user.save!
-    # binding.pry
-    # 上まではuserテーブルに保存する方法でした。
-    # @confirm=Confirm.new(confirm_params)
-    # @confirm.save!
-    # p "----confirmed----"
-
-
-    # 現在このcreateアクションの終了後のビューの表示(下のredirect_to)を単純にコメントアウトを外すとエラーでした。
-    # 調整願えますでしょうか(アダチ)
-
-    # redirect_to user_session_path(@user)
-    redirect_to new_address_path
-
   end
 
   # GET /resource/edit

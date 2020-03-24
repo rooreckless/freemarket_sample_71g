@@ -10,4 +10,5 @@ class User < ApplicationRecord
   has_many :addresses
   has_many :products
   # has_many :credits
+  validates :password,  length: { minimum: 7 }
 end
