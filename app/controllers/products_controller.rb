@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
-    @product.build_image
+    @product.images.new
     @category_parent_array = ["---"]
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
@@ -13,9 +13,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-
-    Product.create(product_params)
-    redirect_to products_path
+    @product = Product.new(product_params)
+    if @product.save
+      redirect_to products_path
+    else
+      redirect_to new_product_path, notice: '空の値があります'
+    end
   end
 
   def show
@@ -40,6 +43,8 @@ class ProductsController < ApplicationController
 
   private
   def product_params 
-    params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,image_attributes:[:id, :image,:product_id])
+    params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image])
+    #カレントユーザーが出来次第追加
+    # .merge(saler_id: current_user.id)
   end
 end
