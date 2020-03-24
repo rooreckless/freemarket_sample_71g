@@ -7,11 +7,13 @@ FactoryBot.define do
     price                {"2000"}
     shipping_date        {"２〜３日で発送"} 
     place                {"宮城県"}
-    created_at           {"2020-03-23 11:53:44"}
-    updated_at           {"020-03-23 11:53:44"}
-    category_id          {"5"}
+    category_id          {"1"}
+
+    association :category
+
     after(:build) do |product|                          
       product.images << build(:image, product: product)
     end  
+
   end
 end
