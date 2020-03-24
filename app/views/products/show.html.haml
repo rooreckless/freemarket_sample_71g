@@ -60,6 +60,18 @@
           = link_to  "#", class: 'link_flag' do 
             = icon('fas', 'flag')
             不適切な商品の通報
+    .main-screen__wrap__edit
+      .main-screen__wrap__edit
+        = link_to "#" do
+          .main-screen__wrap__edit__bule
+            商品の編集
+        .main-screen__wrap__edit__or
+          or
+        = link_to "#" do
+          .main-screen__wrap__edit__gray
+            この商品を削除する
+
+
     .main-screen__wrap__subbox
       = form_with local: true  do |f|
         = f.text_area :content, class: 'content'
@@ -69,6 +81,7 @@
         %div.btn
           = icon('fa', 'comment', class: 'icon')
           = f.submit 'コメントする', class: "btn btnn"
+
     .main-screen__wrap__page
       .main-screen__wrap__page--left
         = link_to  "#", class: 'link' do 
