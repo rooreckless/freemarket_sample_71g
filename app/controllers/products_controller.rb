@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   def index
     @product_new = Product.where(buyer_id: nil).all.order("created_at DESC").limit(3)
     @product_random = Product.where(buyer_id: nil).all.order("RAND()").limit(3)
+    # includes(:images, :category, :seller)
   end
 
   def new

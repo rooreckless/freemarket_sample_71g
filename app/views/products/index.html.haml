@@ -122,7 +122,7 @@
           = link_to product_path(new.id), class: "#" do
             .fifthContent__list
               .fifthContent__list--image
-                - new.images.each do |image|
+                - new.images.first(1).each do |image|
                   = image_tag image.image.url
               .fifthContent__list--underBox
                 %div.itemName
@@ -147,7 +147,7 @@
           = link_to product_path(random.id), class: "#" do
             .fifthContent__list
               .fifthContent__list--image
-                - random.images.each do |image|
+                - random.images.first(1).each do |image|
                   = image_tag image.image.url
               .fifthContent__list--underBox
                 %div.itemName
