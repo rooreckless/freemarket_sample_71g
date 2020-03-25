@@ -1,13 +1,14 @@
 class AddressesController < ApplicationController
   def new
     @address = Address.new
+    puts "binding.pry2"
+    binding.pry
   end
 
   def index
   end
 
   def create
-    binding.pry
     @address = Address.create(address_params)
     redirect_to products_path
   end

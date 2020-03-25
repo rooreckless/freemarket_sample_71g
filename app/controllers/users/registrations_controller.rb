@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  # before_action :configure_sign_up_params, only: [:create]
   
   # before_action :configure_account_update_params, only: [:update]
 
@@ -59,7 +60,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
         redirect_to new_user_registration_path, notice: @user.errors.full_messages
         return
       end
+      puts "binding.pry1"
+      binding.pry
       # 保存が完了したら、会員情報入力画面にリダイレクトします。
+      sign_in(:user, @user)
       redirect_to new_address_path
     else
       # パスワードが一致しない場合、エラーメッセージをflashで表示し、新規登録画面へリダイレクトします。
@@ -121,5 +125,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
+
+  # protected
+  # def configure_sign_up_params
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:nikname])
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:nikname,:email, :encrypted_password])
+  # end
   
 end
