@@ -221,8 +221,9 @@
     .footerImage
   %p
     © FURIMA
-= link_to new_product_path ,class: "linkWhite" do
-  .exhibitionBtn
-    %p
-      出品する
-    %div
+-if user_signed_in?
+  = link_to new_product_path ,class: "linkWhite" do
+    .exhibitionBtn
+      %p
+        出品する
+      %div
