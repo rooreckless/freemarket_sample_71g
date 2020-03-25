@@ -4,6 +4,8 @@
       .main-screen__wrap__box--name
         = @product.name
       .main-screen__wrap__box--img
+        - @product.images.first(1).each do |image|
+          = image_tag image.image.url
       .main-screen__wrap__box--img--content
       .main-screen__wrap__box--price
         = @product.price
@@ -16,7 +18,7 @@
           .main-screen__wrap__box--wrap__record__left
             出品者
           .main-screen__wrap__box--wrap__record__right
-            hoge
+            -# = @product.nikname
         .main-screen__wrap__box--wrap__record
           .main-screen__wrap__box--wrap__record__left
             カテゴリー
@@ -59,17 +61,16 @@
           = link_to  "#", class: 'link_flag' do 
             = icon('fas', 'flag')
             不適切な商品の通報
-    .main-screen__wrap__edit
       .main-screen__wrap__edit
-        = link_to "#" do
-          .main-screen__wrap__edit__bule
-            商品の編集
-        .main-screen__wrap__edit__or
-          or
-        = link_to "#" do
-          .main-screen__wrap__edit__gray
-            この商品を削除する
-
+        .main-screen__wrap__edit
+          = link_to "#" do
+            .main-screen__wrap__edit__bule
+              商品の編集
+          .main-screen__wrap__edit__or
+            or
+          = link_to "#" do
+            .main-screen__wrap__edit__gray
+              この商品を削除する
 
     .main-screen__wrap__subbox
       = form_with local: true  do |f|
