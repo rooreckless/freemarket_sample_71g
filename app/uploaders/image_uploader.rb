@@ -6,6 +6,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   process resize_to_fit: [400,400]
 
+
   # Choose what kind of storage to use for this uploader:
   # 環境ごとに保存先変更(本番環境ならfogを使用=carrierwave.rbにs3の設定が入る。)(本番じゃないならローカルのuploadsフォルダ。ただし.gitignoreによりローカルの投稿画像は上がりません)
   if Rails.env.development?
@@ -39,7 +40,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   # version :thumb do
-  #   process resize_to_fit: [50, 50]
+    process resize_to_fit: [400,400]
   # end
 
   # Add a white list of extensions which are allowed to be uploaded.
