@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  
+  # before_action :configure_sign_up_params, only: [:create]
+
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
@@ -15,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     # パスワード入力欄からの内容と、確認用パスワード入力欄の内容が一致しているかを確かめます。
     if params.require(:user)["password"]==params.require(:user)["password_confirmation"]
-      
+
       # まず、params.require(:user).require(:confirm_attributes)["birthday(2i)"]が1桁なら、2桁にする処理をします。
       if params.require(:user).require(:confirm_attributes)["birthday(2i)"].length==1
         # デバッグ用の表示です。
@@ -23,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         params.require(:user).require(:confirm_attributes)["birthday(2i)"]=(0.to_s+params.require(:user).require(:confirm_attributes)["birthday(2i)"])
         # p params.require(:user).require(:confirm_attributes)["birthday(2i)"]
       end
-      
+
       # 次に、params.require(:user).require(:confirm_attributes)["birthday(3i)"]が1桁なら、同様に処理します。
       if params.require(:user).require(:confirm_attributes)["birthday(3i)"].length==1
         # デバッグ用の表示です。
@@ -32,13 +33,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
         # p params.require(:user).require(:confirm_attributes)["birthday(3i)"]
       end
 
-      #params.require(:user).require(:confirm_attributes)["birthday(1i)"]はString型なので、2iと文字列結合。さらにその後3iとも結合します。 
+      #params.require(:user).require(:confirm_attributes)["birthday(1i)"]はString型なので、2iと文字列結合。さらにその後3iとも結合します。
       params.require(:user).require(:confirm_attributes)["birthday(1i)"].concat(params.require(:user).require(:confirm_attributes)["birthday(2i)"])
       params.require(:user).require(:confirm_attributes)["birthday(1i)"].concat(params.require(:user).require(:confirm_attributes)["birthday(3i)"])
       # デバッグ用の表示です。
       # p "---concated-birthday1i---"
       # p params.require(:user).require(:confirm_attributes)["birthday(1i)"]
-      
+
       # 結合結果の1iを、params.require(:user).require(:confirm_attributes)[:birthday]でbirthdayというキーを作り、値として挿入
       params.require(:user).require(:confirm_attributes)[:birthday]=params.require(:user).require(:confirm_attributes)["birthday(1i)"]
       # 結合したのでparams.require(:user).require(:confirm_attributes)["birthday(2i)"]と3iをけします。
@@ -55,8 +56,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
         redirect_to new_user_registration_path, notice: @user.errors.full_messages
         return
       end
+      # puts "binding.pry1"
+      # binding.pry
       # 保存が完了したら、会員情報入力画面にリダイレクトします。
-      
+      sign_in(:user, @user)
       redirect_to new_address_path
     else
       # パスワードが一致しない場合、エラーメッセージをflashで表示し、新規登録画面へリダイレクトします。
@@ -119,5 +122,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
-  
+
+  # protected
+  # def configure_sign_up_params
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:nikname])
+  #   devise_parameter_sanitizer.permit(:sign_up, keys: [:nikname,:email, :encrypted_password])
+  # end
+
 end
