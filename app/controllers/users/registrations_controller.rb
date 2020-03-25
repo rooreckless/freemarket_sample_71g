@@ -60,8 +60,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         redirect_to new_user_registration_path, notice: @user.errors.full_messages
         return
       end
-      puts "binding.pry1"
-      binding.pry
+      # puts "binding.pry1"
+      # binding.pry
       # 保存が完了したら、会員情報入力画面にリダイレクトします。
       sign_in(:user, @user)
       redirect_to new_address_path
