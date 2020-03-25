@@ -1,3 +1,4 @@
+= render 'layouts/notifications'
 .main-screen
   .main-screen__wrap
     .main-screen__wrap__box
@@ -67,7 +68,7 @@
               商品の編集
           .main-screen__wrap__edit__or
             or
-          = link_to  "/products/#{@product.id}", method: :delete  do
+          = link_to  product_path(@product.id), method: :delete  do
             .main-screen__wrap__edit__gray
               この商品を削除する
 
