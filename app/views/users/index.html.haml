@@ -1,0 +1,45 @@
+.page
+  .page__box
+    .page__box__top
+      購入内容の確認
+    .page__box__product
+      .page__box__product--img
+      .page__box__product--text
+        .page__box__product--text__title
+          商品名
+        .page__box__product--text__second
+          .page__box__product--text__price
+            ¥2,780
+          .page__box__product--text__postage
+            (税込）送料込み
+    .page__box__content
+      .page__box__content--item
+        .page__box__content--item__wrap
+          .page__box__content--item__wrap--left
+            支払い金額
+          .page__box__content--item__wrap--right
+            ¥2,780
+        .page__box__content--item__label
+          .page__box__content--item__label--icon
+            = icon("fas", "stop")
+          .page__box__content--item__label--point
+            ポイントを使用(所持ポイント:P0)
+      .page__box__content--item
+        支払い方法      
+        .page__box__content--item__register
+          .page__box__content--item__register--puls
+            = icon("fa", "plus-circle")
+          .page__box__content--item__register--text
+            登録してください
+      .page__box__content--item
+        配送先
+        .page__box__content--item__register
+          .page__box__content--item__register--puls
+            = icon("fa", "plus-circle")
+          .page__box__content--item__register--text
+            登録してください
+
+      .page__box__content--item
+        = link_to  "#" do 
+          .page__box__content--item__purchase
+            %a購入する

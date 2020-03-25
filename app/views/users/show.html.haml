@@ -1,0 +1,127 @@
+%header
+  .headerLow
+    .mainHeader
+      = link_to root_path, class: "logoBox" do
+        %div
+      .searchBox
+        = form_with model:@post,class: "searchBox__form", local: true do |f|
+          = f.text_field :content,class: "searchBox__input", placeholder:"キーワードから探す"
+          = f.submit "", class: "searchBox__submit"
+    .headerLists
+      %ul.leftlists
+        %li.leftlists__left
+          = link_to "#", class: "linkBlack" do
+            カテゴリー
+        %li.leftlists__right
+          = link_to "#", class: "linkBlack" do
+            ブランド
+      %ul.rightlists
+        - if user_signed_in?
+          %li.rightlists__right
+            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "linkBlack"
+        - else
+          %li.rightlists__left
+            = link_to "ログイン", new_user_session_path, class: "linkBlack"
+          %li.rightlists__right
+            = link_to "新規登録", new_user_registration_path, class: "linkBlack"
+
+.my-page
+  .my-page__whole
+    .my-page__whole__left-bar
+      .my-page__whole__left-bar__side
+        .my-page__whole__left-bar__side__top
+          マイページメニュー
+        .my-page__whole__left-bar__side__bottom
+          = link_to "#", class: "list" do
+            .my-page__whole__left-bar__side__bottom__all
+              いいねした商品
+      .my-page__whole__left-bar__side
+        .my-page__whole__left-bar__side__top
+          出品
+        .my-page__whole__left-bar__side__bottom
+          = link_to "#", class: "list" do
+            .my-page__whole__left-bar__side__bottom__all
+              商品を出品する
+            .my-page__whole__left-bar__side__bottom__all-b
+              出品した商品
+      .my-page__whole__left-bar__side
+        .my-page__whole__left-bar__side__top
+          購入
+        .my-page__whole__left-bar__side__bottom
+          = link_to "#", class: "list" do
+            .my-page__whole__left-bar__side__bottom__all
+              購入した商品
+      .my-page__whole__left-bar__side
+        .my-page__whole__left-bar__side__top
+          登録
+        .my-page__whole__left-bar__side__bottom
+          = link_to "#", class: "list" do
+            .my-page__whole__left-bar__side__bottom__all
+              クレジットカード登録/変更
+      .my-page__whole__left-bar__side
+        .my-page__whole__left-bar__side__top
+          その他
+        .my-page__whole__left-bar__side__bottom
+          = link_to "#", class: "list" do
+            .my-page__whole__left-bar__side__bottom__all
+              設定
+    .my-page__whole__right-bar
+      .my-page__whole__right-bar__title
+        さんのマイページ
+      .my-page__whole__right-bar__side
+        .my-page__whole__right-bar__side__top
+          現在売っている商品
+        .my-page__whole__right-bar__side__bottom
+          .my-page__whole__right-bar__side__bottom__down__list__individual
+            .my-page__whole__right-bar__side__bottom__down__list__individual__whole
+              .my-page__whole__right-bar__side__bottom__down__list__individual__whole__img
+              .my-page__whole__right-bar__side__bottom__down__list__individual__whole__title
+              .my-page__whole__right-bar__side__bottom__down__list__individual__whole__price
+
+.footer
+  .footerContents__low
+    .footerContent
+      %div
+        FURIMAについて
+      %div
+        = link_to "#", class: "linkWhite" do
+          会社概要（運営会社）
+      %div
+        = link_to "#", class: "linkWhite" do
+          プライバシーポリシー
+      %div
+        = link_to "#", class: "linkWhite" do
+          FURIMA利用規約
+      %div
+        = link_to "#", class: "linkWhite" do
+          ポイントに関する特約
+    .footerContent
+      %div
+        FURIMAを見る
+      %div
+        = link_to "#", class: "linkWhite" do
+          カテゴリー一覧
+      %div
+        = link_to "#", class: "linkWhite" do
+          ブランド一覧
+    .footerContent
+      %div
+        ヘルプ＆ガイド
+      %div
+        = link_to "#", class: "linkWhite" do
+          FURIMAガイド
+      %div
+        = link_to "#", class: "linkWhite" do
+          FURIMAロゴ利用ガイドライン
+      %div
+        = link_to "#", class: "linkWhite" do
+          お知らせ
+  = link_to "#", class: "linkWhite" do
+    .footerImage
+  %p
+    © FURIMA
+= link_to new_product_path ,class: "linkWhite" do
+  -# .exhibitionBtn
+  -#   %p
+  -#     出品する
+  -#   %div
