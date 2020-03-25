@@ -13,7 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    # パスワード入力欄からの内容と、確認用パスワード入力欄の内容が
+    # パスワード入力欄からの内容と、確認用パスワード入力欄の内容が一致しているかを確かめます。
     if params.require(:user)["password"]==params.require(:user)["password_confirmation"]
       
       # まず、params.require(:user).require(:confirm_attributes)["birthday(2i)"]が1桁なら、2桁にする処理をします。
@@ -45,10 +45,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       params.require(:user).require(:confirm_attributes).delete("birthday(2i)")
       params.require(:user).require(:confirm_attributes).delete("birthday(3i)")
       params.require(:user).require(:confirm_attributes).delete("birthday(1i)")
-      
-      # デバッグ用の表示です。
-      # p "---insert-and-print-birday---"
-      # p params.require(:user).require(:confirm_attributes)["birthday"]
 
       @user = User.new(user_params)
       # バリデーションにかかるとsaveできないので、確かめます
@@ -60,11 +56,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
         return
       end
       # 保存が完了したら、会員情報入力画面にリダイレクトします。
+      
       redirect_to new_address_path
     else
       # パスワードが一致しない場合、エラーメッセージをflashで表示し、新規登録画面へリダイレクトします。
       redirect_to new_user_registration_path, notice: 'パスワードが一致しません。'
       # render "new"
+      return
     end
   end
 
