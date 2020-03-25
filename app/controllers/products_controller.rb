@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :set_product, only: [:edit, :show]
+  before_action :set_product, only: [:edit, :show,:destroy]
 
   def index
     @product_new = Product.where(buyer_id: nil).order("created_at DESC").limit(3)
@@ -35,8 +35,7 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    product = Product.find(params[:id])
-    if product.destroy
+    if @product.destroy
       redirect_to root_path, notice: '消去に成功しました。'
     else
       render :show, alert: '消去に失敗しました。'
