@@ -9,7 +9,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     @user = User.new
     @user.build_confirm
-    puts "aaaa"
   end
 
   # POST /resource
@@ -45,7 +44,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user = User.new(user_params)
       # バリデーションにかかるとsaveできないので、確かめます
       if @user.valid?
-        @user.save!
+        # バリデーションを通過し、saveできるのですが、この段階でのエラー発生を想定し、例外処理を加えます。
+        begin
+          @user.save!
+        rescue => e
+          # saveに失敗した場合はflashメッセージが出て、新規登録ページにリダイレクトします。
+          Rails.logger.debug e.message
+          redirect_to new_user_registration_path, notice: 'エラーが発生しました。'
+        end
+        
       else
         # バリデーションにかかった場合、flashメッセージを表示しつつ、新規ユーザ登録画面にリダイレクトします。
         redirect_to new_user_registration_path, notice: @user.errors.full_messages
