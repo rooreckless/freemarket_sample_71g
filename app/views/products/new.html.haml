@@ -1,9 +1,16 @@
+= render 'layouts/notifications'
 .productNewLow
   .productNew__logoLow
     = link_to "#" , class:"#" do
       %div.productNew__logo
   .formLow
     = form_for @product do |f|
+      - if @product.errors.any?
+        .formBox
+          %h2= "#{@product.errors.full_messages.count}件のエラーが発生しました。"
+          %ul
+            - @product.errors.full_messages.each do |message|
+              %li= message
       .formBox.formBox__image
         .formBox__texts
           %span
@@ -12,9 +19,15 @@
             必須
           .formBox__secondTexts
             商品の画像をアップロードできます。
-        = f.fields_for :image do |i|
-          = i.label :image, class: 'formBox__imageBox' do
-            = i.file_field :image, class: "formBox__imageBox--image"
+        = f.fields_for :images do |i|
+          = i.label :image, class: 'formBox__imageBox',for: "product_images_attributes_0_image" do
+            = i.file_field :image, class: "formBox__imageBox--image",id: "product_images_attributes_0_image"
+            %i.fas.fa-camera
+            %div
+              画像をアップロード
+        = f.fields_for :images do |i|
+          = i.label :image, class: 'formBox__imageBox',for: "product_images_attributes_1_image" do
+            = i.file_field :image, class: "formBox__imageBox--image",id: "product_images_attributes_1_image"
             %i.fas.fa-camera
             %div
               画像をアップロード
@@ -33,20 +46,16 @@
             必須
         = f.text_area :explanation,class: "formBox__explanation--input", placeholder:"商品の説明（必須 1,000文字以内）&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10;&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe 
       %hr
-      .formBox
-        -# .formBox__description
-        -#   商品の詳細
-        -# .formBox__texts
-        -#   %span
-        -#     カテゴリー
-        -#   %span
-        -#     必須
-        -# .formBox__select
-        -#   = f.select :name ,[ ["レディース",1], ["メンズ", 2] ] ,prompt: "カテゴゴリを選択してください"
-        -# .formBox__select
-        -#   = f.select :name ,[ ["レディース",1], ["メンズ", 2] ],prompt: "カテゴゴリを選択してください"
-        -# .formBox__select
-        -#   = f.select :name ,[ ["レディース",1], ["メンズ", 2] ],prompt: "カテゴゴリを選択してください"
+      .formBox#categorySelect__box
+        .formBox__description
+          商品の詳細
+        .formBox__texts
+          %span
+            カテゴリー
+          %span
+            必須
+        .formBox__select#categorySelect1
+          = f.select  :category_id, @category_parent_array, {}, {class: 'listing-select-wrapper__box--select', id: 'parent_category'}
         .formBox__texts
           %span
             ブランド
@@ -59,7 +68,7 @@
           %span
             必須
         .formBox__select
-          = f.select :status ,[ ["新品、未使用"], ["未使用に近い"] , ["目立った傷や汚れなし"] , ["やや傷や汚れあり"] , ["傷や汚れあり"] , ["全体的に状態が悪い"] ] ,prompt: "選択してください"
+          = f.collection_select :status , Statushash.all, :value, :name
       %hr
       .formBox
         .formBox__description
@@ -70,14 +79,14 @@
           %span
             必須
         .formBox__select
-          = f.select :place ,Product.places.keys, {},prompt: "選択してください"
+          = f.collection_select :place, Prefecture.all, :value, :name
         .formBox__texts
           %span
             発送までの日数
           %span
             必須
         .formBox__select
-          = f.select :shipping_date ,[ ["１〜２日で発送"], ["２〜３日で発送"], ["４〜７日で発送"] ] ,prompt: "選択してください"
+          = f.collection_select :shipping_date, Shippinghash.all, :value, :name
       %hr
       .formBox
         .formBox__description

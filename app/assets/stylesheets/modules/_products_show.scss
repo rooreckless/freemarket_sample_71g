@@ -105,6 +105,32 @@
       }
     }
 
+    &__edit{
+      background-color: $mainWhite;
+      text-align: center;
+      margin: 10px 0;
+      padding: 12px 24px;
+      font-size: 14px;
+
+      &__bule{
+        color: $mainWhite;
+        background-color: $mainBlue;
+        line-height: 46px;
+      }
+
+      &__or{
+        color: $mainBlack;
+        margin-top: 12px;
+      }
+
+      &__gray{
+        color: $mainWhite;
+        background-color: $darkGray;
+        line-height: 46px;
+        margin-top: 12px;
+      }
+    }
+
     &__subbox{
       padding: 24px 40px 40px;
       margin: 10px 0;

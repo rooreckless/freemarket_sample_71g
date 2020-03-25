@@ -17,18 +17,18 @@
             出品者
           .main-screen__wrap__box--wrap__record__right
             hoge
-
         .main-screen__wrap__box--wrap__record
           .main-screen__wrap__box--wrap__record__left
             カテゴリー
           .main-screen__wrap__box--wrap__record__right
             = link_to  "#", class: 'link' do
-              レディース
+              = @product.category.parent.parent.name
+              %br/
             = link_to  "#", class: 'link' do
-              %brトップス
+              = @product.category.parent.name
+              %br/
             = link_to  "#", class: 'link' do
-              %brTシャツ/カットソー(半袖/袖なし)
-        
+              = @product.category.name
         .main-screen__wrap__box--wrap__record
           .main-screen__wrap__box--wrap__record__left
             ブランド
@@ -39,7 +39,6 @@
             商品の状態
           .main-screen__wrap__box--wrap__record__right
             = @product.status
-
         .main-screen__wrap__box--wrap__record
           .main-screen__wrap__box--wrap__record__left
             発送元の地域
@@ -60,6 +59,18 @@
           = link_to  "#", class: 'link_flag' do 
             = icon('fas', 'flag')
             不適切な商品の通報
+    .main-screen__wrap__edit
+      .main-screen__wrap__edit
+        = link_to "#" do
+          .main-screen__wrap__edit__bule
+            商品の編集
+        .main-screen__wrap__edit__or
+          or
+        = link_to "#" do
+          .main-screen__wrap__edit__gray
+            この商品を削除する
+
+
     .main-screen__wrap__subbox
       = form_with local: true  do |f|
         = f.text_area :content, class: 'content'
@@ -69,6 +80,7 @@
         %div.btn
           = icon('fa', 'comment', class: 'icon')
           = f.submit 'コメントする', class: "btn btnn"
+
     .main-screen__wrap__page
       .main-screen__wrap__page--left
         = link_to  "#", class: 'link' do 
