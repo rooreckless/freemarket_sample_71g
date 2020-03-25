@@ -1,8 +1,6 @@
 class AddressesController < ApplicationController
   def new
     @address = Address.new
-    puts "binding.pry2"
-    binding.pry
   end
 
   def index
