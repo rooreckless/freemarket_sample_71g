@@ -11,6 +11,11 @@
         = @product.price
       .main-screen__wrap__box--subprice
         (税込) 送料込み
+
+      = link_to "#", class: 'link' do
+        .main-screen__wrap__box--purchase
+          購入確認ページへ移動
+
       .main-screen__wrap__box--comment
         = @product.explanation
       .main-screen__wrap__box--wrap
@@ -46,7 +51,6 @@
             発送元の地域
           .main-screen__wrap__box--wrap__record__right
             = @product.place
-
         .main-screen__wrap__box--wrap__record
           .main-screen__wrap__box--wrap__record__left
             発送日の目安
