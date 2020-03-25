@@ -30,6 +30,7 @@
         -# %li.rightlists__right
         -#   = link_to new_user_registration_path, class: "linkBlack" do
         -#     新規会員登録
+= render 'layouts/notifications'
 .main
   .topcontentLow
     .topcontent
@@ -221,8 +222,9 @@
     .footerImage
   %p
     © FURIMA
-= link_to new_product_path ,class: "linkWhite" do
-  .exhibitionBtn
-    %p
-      出品する
-    %div
+-if user_signed_in?
+  = link_to new_product_path ,class: "linkWhite" do
+    .exhibitionBtn
+      %p
+        出品する
+      %div
