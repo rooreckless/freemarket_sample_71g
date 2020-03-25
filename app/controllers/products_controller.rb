@@ -45,8 +45,6 @@ class ProductsController < ApplicationController
 
   private
   def product_params 
-    params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image])
-    #カレントユーザーが出来次第追加
-    # .merge(saler_id: current_user.id)
+    params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image]).merge(saler_id: current_user.id)
   end
 end
