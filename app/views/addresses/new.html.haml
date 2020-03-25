@@ -1,0 +1,77 @@
+.address
+  = render 'devise/header'
+  .address__content
+    .address__content__up
+      会員情報入力(住所)
+    .address__content__down
+      .address__content__down__shipping-name
+
+        .address__content__down__shipping-name__down
+          = form_for(@address, url: addresses_path) do |f|
+            = render "devise/shared/error_messages", resource: @address
+            .address__content__down__shipping-name__down__1
+              = f.label :お名前全角
+              %span.address__content__down__shipping-name__up__2 必須
+              %br/
+              .address__content__down__shipping-name__down
+                = f.text_field :shipping_name_last_name, class: 'form-control', placeholder:"例）山田"
+                = f.text_field :shipping_name_first_name, autofocus: true, class: 'form-control', placeholder:"例）彩"
+
+            .address__content__down__shipping-name__down__1
+              = f.label :宛先の名前カナ
+              %span.address__content__down__shipping-name__up__2 必須
+              %br/
+              .address__content__down__shipping-name__down
+                = f.text_field :shipping_last_name_kana, class: 'form-control', placeholder:"例）ヤマダ"
+                = f.text_field :shipping_first_name_kana, autofocus: true, class: 'form-control', placeholder:"例）アヤ"
+
+            .address__content__down__shipping-name__down__1
+              = f.label :郵便番号
+              %span.address__content__down__shipping-name__up__2 必須
+              %br/
+              .address__content__down__shipping-name__down
+                = f.text_field :postcode, class: 'form-control', placeholder:"000-0000"
+
+            .address__content__down__shipping-name__down__1
+              = f.label :都道府県
+              %span.address__content__down__shipping-name__up__2 必須
+              %br/
+              .address__content__down__shipping-name__down
+                = f.text_field :state, class: 'form-control', placeholder:"都道府県"
+            
+            .address__content__down__shipping-name__down__1
+              = f.label :市区町村
+              %span.address__content__down__shipping-name__up__2 必須
+              %br/
+              .address__content__down__shipping-name__down
+                = f.text_field :city, class: 'form-control', placeholder:"市区町村"
+
+            .address__content__down__shipping-name__down__1
+              = f.label :町内番地
+              %span.address__content__down__shipping-name__up__2 必須
+              %br/
+              .address__content__down__shipping-name__down
+                = f.text_field :address_line, class: 'form-control', placeholder:"町内番地"
+
+            .address__content__down__shipping-name__down__1
+              = f.label :建物名
+              %br/
+              .address__content__down__shipping-name__down
+                = f.text_field :building_name, class: 'form-control', placeholder:"建物名"
+            
+            .address__content__down__shipping-name__down__1
+              = f.label :部屋番号
+              %br/
+              .address__content__down__shipping-name__down
+                = f.text_field :room_number, class: 'form-control', placeholder:"000号室"
+            
+            .address__content__down__shipping-name__down__1
+              = f.label :電話番号
+              %br/
+              .address__content__down__shipping-name__down
+                = f.text_field :phone_number, class: 'form-control', placeholder:"000-0000-0000"
+            
+            .address__content__down__btn__all
+              = f.submit "送信する", class: "btn"
+
+  = render 'devise/footer'

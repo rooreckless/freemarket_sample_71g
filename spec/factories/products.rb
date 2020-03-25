@@ -8,8 +8,10 @@ FactoryBot.define do
     shipping_date        {"２〜３日で発送"} 
     place                {"宮城県"}
     category_id          {"1"}
-
+    saler_id             {"1"} 
     association :category
+    association :saler,factory: :user
+
 
     after(:build) do |product|                          
       product.images << build(:image, product: product)

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :basic_auth, if: :production?
   protect_from_forgery with: :exception
+  before_action :configure_sign_up_params, only: [:create], if: :devise_controller?
 
   private
 
@@ -12,5 +13,10 @@ class ApplicationController < ActionController::Base
     authenticate_or_request_with_http_basic do |username, password|
       username == ENV["BASIC_AUTH_USER2"] && password == ENV["BASIC_AUTH_PASSWORD2"]
     end
+  end
+  protected
+  def configure_sign_up_params
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nikname])
+    # devise_parameter_sanitizer.permit(:sign_up, keys: [:nikname,:email, :encrypted_password])
   end
 end
