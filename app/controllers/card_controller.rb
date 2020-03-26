@@ -1,10 +1,5 @@
 class CardController < ApplicationController
 
-
-  # .env
-AWS_ACCESS_KEY_ID="spk_test_4bd5247adc321aea8b52bc3c"
-AWS_SECRET_ACCESS_KEY="sk_test_a1e32f13f3b2adc61a44ad06"
-
   require "payjp"
 
   def new
@@ -17,13 +12,11 @@ AWS_SECRET_ACCESS_KEY="sk_test_a1e32f13f3b2adc61a44ad06"
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
-      buyer = Payjp::Buyer.create(
-      description: '登録テスト', #なくてもOK
-      email: current_user.email, #なくてもOK
+      customer = Payjp::Customer.create(
       card: params['payjp-token'],
       metadata: {user_id: current_user.id}
       ) #念の為metadataにuser_idを入れましたがなくてもOK
-      @card = Card.new(user_id: current_user.id, buyer_id: buyer.id, card_id: buyer.default_card)
+      @card = Card.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save
         redirect_to action: "show"
       else
@@ -37,8 +30,8 @@ AWS_SECRET_ACCESS_KEY="sk_test_a1e32f13f3b2adc61a44ad06"
     if card.blank?
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      buyer = Payjp::Buyer.retrieve(card.buyer_id)
-      buyer.delete
+      customer = Payjp::Customer.retrieve(card.buyer_id)
+      customer.delete
       card.delete
     end
       redirect_to action: "new"
@@ -50,8 +43,8 @@ AWS_SECRET_ACCESS_KEY="sk_test_a1e32f13f3b2adc61a44ad06"
       redirect_to action: "new" 
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      buyer = Payjp::Buyer.retrieve(card.buyer_id)
-      @default_card_information = buyer.cards.retrieve(card.card_id)
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_information = customer.cards.retrieve(card.card_id)
     end
   end
 end

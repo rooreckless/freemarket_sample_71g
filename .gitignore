@@ -28,3 +28,7 @@
 
 # 全環境においてアップロードした画像はgithubに上がらないようにしました。
 public/uploads/*
+
+# .env
+AWS_ACCESS_KEY_ID="spk_test_4bd5247adc321aea8b52bc3c"
+AWS_SECRET_ACCESS_KEY="sk_test_a1e32f13f3b2adc61a44ad06"
