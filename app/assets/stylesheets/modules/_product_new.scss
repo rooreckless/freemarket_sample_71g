@@ -35,16 +35,19 @@
       background-color: $mainWhite;
       &__texts{
         font-size: 14px;
-        & :nth-child(1){
-          font-weight: bold;
-        }
-        & :nth-child(2){
-          margin-left: 5px;
-          font-size: 12px;
-          background-color: $mainBlue;
-          color: $mainWhite;
-          padding: 1px;
-        }
+        margin-right: 20px;
+        & span{
+          &:nth-child(1){
+            font-weight: bold;
+          }
+          &:nth-child(2){
+            font-size: 12px;
+            background-color: $mainBlue;
+            color: $mainWhite;
+            padding: 1px;
+            margin-left: 5px;
+          }
+      }
         &--price{
           height: 48px;
           line-height: 48px;
@@ -154,5 +157,10 @@
         margin-top: 40px;
       }
     }
+  }
+}
+#image-box{
+  & .js-file_group{
+    margin-bottom: 20px;
   }
 }
