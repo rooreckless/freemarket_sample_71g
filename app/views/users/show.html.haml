@@ -78,6 +78,11 @@
               .my-page__whole__right-bar__side__bottom__down__list__individual__whole__title
               .my-page__whole__right-bar__side__bottom__down__list__individual__whole__price
 
+= form_with url: root_path do
+  :plain
+    <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_4bd5247adc321aea8b52bc3c"></script>
+
+
 .footer
   .footerContents__low
     .footerContent
