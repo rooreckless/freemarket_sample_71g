@@ -53,11 +53,15 @@
               購入した商品
       .my-page__whole__left-bar__side
         .my-page__whole__left-bar__side__top
-          登録
+          クレジットカード
         .my-page__whole__left-bar__side__bottom
-          = link_to "#", class: "list" do
+          = link_to new_card_path, class: "list" do
             .my-page__whole__left-bar__side__bottom__all
-              クレジットカード登録/変更
+              登録/変更
+        .my-page__whole__left-bar__side__bottom
+          = link_to delete_card_index_path, class: "list" do
+            .my-page__whole__left-bar__side__bottom__all
+              削除
       .my-page__whole__left-bar__side
         .my-page__whole__left-bar__side__top
           その他
