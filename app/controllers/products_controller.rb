@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :move_index, only: [:purchase]
 
   def index
     @product_new = Product.where(buyer_id: nil).order("created_at DESC").limit(3)
@@ -43,8 +44,18 @@ class ProductsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
  end
 
+ def purchase
+    @product = Product.find(params[:id])
+ end
+
   private
   def product_params 
     params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image]).merge(saler_id: current_user.id)
+  end
+
+  def move_index
+    unless current_user.id != Product.find(params[:id]).saler.id
+      redirect_to root_path
+    end
   end
 end
