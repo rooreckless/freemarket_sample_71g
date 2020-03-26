@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
   before_action :move_purchase, only: [:purchase]
   before_action :move_edit_destroy, only: [:edit, :destroy]
 
+  before_action :set_product, only: [:edit, :show,:destroy]
+
   def index
     @product_new = Product.where(buyer_id: nil).order("created_at DESC").limit(3)
     @product_random = Product.where(buyer_id: nil).order("RAND()").limit(3)
@@ -26,15 +28,20 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
   end
 
   def edit
-    @product = Product.find(params[:id])
   end
 
   def update
-    @product = Product.find(params[:id])
+  end
+
+  def destroy
+    if @product.destroy
+      redirect_to root_path, notice: '消去に成功しました。'
+    else
+      render :show, alert: '消去に失敗しました。'
+    end
   end
 
   def get_category_children
@@ -53,11 +60,14 @@ class ProductsController < ApplicationController
   def product_params 
     params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image]).merge(saler_id: current_user.id)
   end
-
+  
   def move_index
     unless current_user.id != Product.find(params[:id]).saler.id
       redirect_to root_path
     end
+    
+  def set_product
+    @product = Product.find(params[:id])
   end
 
   def move_edit_destroy
