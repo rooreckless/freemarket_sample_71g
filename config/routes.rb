@@ -8,12 +8,12 @@ Rails.application.routes.draw do
   resources :users, only: [:show,:index]
   resources :addresses, only: [:new, :create, :index]
   resources :products do
-      member do
+    member do
       get 'purchase'
-      end 
-        collection do
-        get 'get_category_children', defaults: { format: 'json' }
-        get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
     end
   end
 end
