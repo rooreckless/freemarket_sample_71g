@@ -1,3 +1,4 @@
+= render 'layouts/notifications'
 .main-screen
   .main-screen__wrap
     .main-screen__wrap__box
@@ -64,17 +65,17 @@
           = link_to  "#", class: 'link_flag' do 
             = icon('fas', 'flag')
             不適切な商品の通報
-      - if user_signed_in? && current_user.id == @product.saler.id 
+    - if user_signed_in? && current_user.id == @product.saler.id
+      .main-screen__wrap__edit
         .main-screen__wrap__edit
-          .main-screen__wrap__edit
-            = link_to "#" do
-              .main-screen__wrap__edit__bule
-                商品の編集
+          = link_to "#" do
+            .main-screen__wrap__edit__bule
+              商品の編集
           .main-screen__wrap__edit__or
             or
-            = link_to "#" do
-              .main-screen__wrap__edit__gray
-                この商品を削除する
+          = link_to  product_path(@product.id), method: :delete  do
+            .main-screen__wrap__edit__gray
+              この商品を削除する
 
     .main-screen__wrap__subbox
       = form_with local: true  do |f|
