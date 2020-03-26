@@ -71,4 +71,3 @@ class ProductsController < ApplicationController
     redirect_to root_path unless current_user.id == Product.find(params[:id]).saler.id
     end
   end
-end
