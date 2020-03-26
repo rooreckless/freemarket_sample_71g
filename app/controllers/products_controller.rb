@@ -29,6 +29,7 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    @images = @product.images
 
 
     grandchild_category = @product.category
@@ -52,7 +53,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product.update(product_params)
+    @product.update(update_params)
   end
 
   def destroy
@@ -74,6 +75,10 @@ class ProductsController < ApplicationController
   private
   def product_params 
     params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image]).merge(saler_id: current_user.id)
+  end
+
+  def update_params
+    params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image,:id]).merge(saler_id: current_user.id)
   end
 
   def set_product
