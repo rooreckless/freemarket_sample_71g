@@ -31,9 +31,6 @@ ActiveRecord::Schema.define(version: 2020_03_26_072534) do
     t.integer "user_id", null: false
     t.string "buyer_id", null: false
     t.string "card_id", null: false
-    t.string "card_number", null: false
-    t.string "expiry_date", null: false
-    t.string "security_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
