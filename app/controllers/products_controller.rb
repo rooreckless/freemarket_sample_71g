@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :move_index, only: [:purchase]
+  before_action :move_purchase, only: [:purchase]
+  before_action :move_edit_destroy, only: [:edit, :destroy]
 
   def index
     @product_new = Product.where(buyer_id: nil).order("created_at DESC").limit(3)
@@ -55,6 +56,12 @@ class ProductsController < ApplicationController
 
   def move_index
     unless current_user.id != Product.find(params[:id]).saler.id
+      redirect_to root_path
+    end
+  end
+
+  def move_edit_destroy
+    unless current_user.id == Product.find(params[:id]).saler.id
       redirect_to root_path
     end
   end
