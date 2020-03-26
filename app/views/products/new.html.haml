@@ -35,18 +35,6 @@
             .js-file_group{"data-index" => "#{@product.images.count}"}
               = file_field_tag :image, name: "product[images_attributes][#{@product.images.count}][image]", class: 'js-file'
               .js-remove 削除
-        -# #image-box
-        -#   = f.fields_for :images do |image|
-        -#     .js-file_group{"data-index" => "#{image.index}"}
-        -#       = image.file_field :src, class: 'js-file'
-        -#       %br/
-        -#       %span.js-remove 削除
-        -# = f.fields_for :images do |i|
-        -#   = i.label :image, class: 'formBox__imageBox',for: "product_images_attributes_1_image" do
-        -#     = i.file_field :image, class: "formBox__imageBox--image",id: "product_images_attributes_1_image"
-        -#     %i.fas.fa-camera
-        -#     %div
-        -#       画像をアップロード
       %hr
       .formBox
         .formBox__texts
