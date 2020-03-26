@@ -33,13 +33,7 @@ class ProductsController < ApplicationController
     grandchild_category = @product.category
     child_category = grandchild_category.parent
 
-
-    @category_parent_array = []
-    Category.pluck(:ancestry,:name).each do |parent|
-      if parent[0] == nil
-        @category_parent_array << parent[1]
-      end
-    end
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name)
 
     @category_children_array = Category.where(ancestry: child_category.ancestry)
 
