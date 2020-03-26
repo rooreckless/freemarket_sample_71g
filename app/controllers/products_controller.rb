@@ -29,9 +29,6 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @images = @product.images
-
-
     grandchild_category = @product.category
     child_category = grandchild_category.parent
 
@@ -53,7 +50,11 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @product.update(update_params)
+    if @product.update(update_params)
+      redirect_to root_path, notice: '更新にに成功しました。'
+    else
+      render :edit, alert: '更新に失敗しました。'
+    end
   end
 
   def destroy
@@ -78,7 +79,7 @@ class ProductsController < ApplicationController
   end
 
   def update_params
-    params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image,:id]).merge(saler_id: current_user.id)
+    params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image,:id,:_destroy]).merge(saler_id: current_user.id)
   end
 
   def set_product
