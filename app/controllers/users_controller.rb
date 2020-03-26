@@ -10,7 +10,7 @@ class UsersController < ApplicationController
   private
     def move_index
         redirect_to controller: :products, action: :index
-      unless current_user.id == @uses.saler.id
+      unless current_user.id == @product.saler.id
+      end
     end
   end
-end
