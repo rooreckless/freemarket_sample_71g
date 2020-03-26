@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
 
-  before_action :set_product, only: [:edit, :show,:destroy]
+  before_action :set_product, only: [:edit, :show,:destroy,:edit,:update]
 
   def index
     @product_new = Product.where(buyer_id: nil).order("created_at DESC").limit(3)
@@ -29,9 +29,24 @@ class ProductsController < ApplicationController
   end
 
   def edit
+
+    grandchild_category = @product.category
+    child_category = grandchild_category.parent
+
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name)
+
+    @category_children_array = Category.where(ancestry: child_category.ancestry)
+
+    @category_grandchildren_array = Category.where(ancestry: grandchild_category.ancestry)
+
   end
 
   def update
+    if @product.update(update_params)
+      redirect_to root_path, notice: '更新にに成功しました。'
+    else
+      render :edit, alert: '更新に失敗しました。'
+    end
   end
 
   def destroy
@@ -53,6 +68,10 @@ class ProductsController < ApplicationController
   private
   def product_params 
     params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image]).merge(saler_id: current_user.id)
+  end
+
+  def update_params
+    params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image,:id,:_destroy]).merge(saler_id: current_user.id)
   end
 
   def set_product

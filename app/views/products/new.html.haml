@@ -19,18 +19,22 @@
             必須
           .formBox__secondTexts
             商品の画像をアップロードできます。
-        = f.fields_for :images do |i|
-          = i.label :image, class: 'formBox__imageBox',for: "product_images_attributes_0_image" do
-            = i.file_field :image, class: "formBox__imageBox--image",id: "product_images_attributes_0_image"
-            %i.fas.fa-camera
-            %div
-              画像をアップロード
-        = f.fields_for :images do |i|
-          = i.label :image, class: 'formBox__imageBox',for: "product_images_attributes_1_image" do
-            = i.file_field :image, class: "formBox__imageBox--image",id: "product_images_attributes_1_image"
-            %i.fas.fa-camera
-            %div
-              画像をアップロード
+          #previews
+        #image-box
+          - if @product.persisted?
+            - @product.images.each_with_index do |pic, i|
+              = image_tag pic.image.url, data: { index: i }, width: "100", height: '100'
+          = f.fields_for :images do |pic|
+            .js-file_group{"data-index" => "#{pic.index}"}
+              = pic.file_field :image, class: 'js-file'
+              %br/
+              %span.js-remove 削除
+            - if @product.persisted?
+              = pic.check_box :_destroy, data:{ index: pic.index }, class: 'hidden-destroy'
+          - if @product.persisted?
+            .js-file_group{"data-index" => "#{@product.images.count}"}
+              = file_field_tag :image, name: "product[images_attributes][#{@product.images.count}][image]", class: 'js-file'
+              .js-remove 削除
       %hr
       .formBox
         .formBox__texts

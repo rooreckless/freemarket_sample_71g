@@ -63,7 +63,7 @@
     - if user_signed_in? && current_user.id == @product.saler.id
       .main-screen__wrap__edit
         .main-screen__wrap__edit
-          = link_to "#" do
+          = link_to  edit_product_path(@product.id) do
             .main-screen__wrap__edit__bule
               商品の編集
           .main-screen__wrap__edit__or
