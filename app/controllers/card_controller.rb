@@ -17,7 +17,7 @@ AWS_SECRET_ACCESS_KEY="sk_test_a1e32f13f3b2adc61a44ad06"
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
-      buyer = Payjp::Customer.create(
+      buyer = Payjp::Buyer.create(
       description: '登録テスト', #なくてもOK
       email: current_user.email, #なくてもOK
       card: params['payjp-token'],
@@ -37,7 +37,7 @@ AWS_SECRET_ACCESS_KEY="sk_test_a1e32f13f3b2adc61a44ad06"
     if card.blank?
     else
       Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-      buyer = Payjp::Customer.retrieve(card.buyer_id)
+      buyer = Payjp::Buyer.retrieve(card.buyer_id)
       buyer.delete
       card.delete
     end
