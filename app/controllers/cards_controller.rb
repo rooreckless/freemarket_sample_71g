@@ -4,10 +4,12 @@ class CardsController < ApplicationController
 
   def new # カードの登録画面。送信ボタンを押すとcreateアクションへ。
     card = Card.where(user_id: current_user.id).first
-    redirect_to action: "index" if card.present?
+    redirect_to action: "create" if card.present?
   end
 
  # indexアクションはここでは省略
+  def index
+  end
 
   def create #PayjpとCardのデータベースを作成
     Payjp.api_key = 'sk_test_a1e32f13f3b2adc61a44ad06'
