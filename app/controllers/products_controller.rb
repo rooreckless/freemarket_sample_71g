@@ -20,7 +20,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to products_path
+      redirect_to products_path, notice: '商品を出品成功しました。'
     else
       redirect_to new_product_path, notice: '空の値があります'
     end
