@@ -17,10 +17,10 @@
             ブランド
       %ul.rightlists
         - if user_signed_in?
-          %li.rightlists__right
-            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "linkBlack"
           %li.rightlists__left
             = link_to "マイページ", user_path(current_user), class: "linkBlack"
+          %li.rightlists__right
+            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "linkBlack"
         - else
           %li.rightlists__left
             = link_to "ログイン", new_user_session_path, class: "linkBlack"
