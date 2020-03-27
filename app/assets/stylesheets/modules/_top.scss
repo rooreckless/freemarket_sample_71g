@@ -324,8 +324,10 @@ header{
           height: 100%;
           &--image{
             height: 150px;
-            text-align: center;
             background-color: darkgrey;
+            & img{
+              width: 100% !important;
+            }
           }
           &--underBox{
             background-color: $mainWhite;
