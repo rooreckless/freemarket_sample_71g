@@ -5,9 +5,9 @@
       .main-screen__wrap__box--name
         = @product.name
       .main-screen__wrap__box--img
-        - @product.images.first(1).each do |image|
-          = image_tag image.image.url
-      .main-screen__wrap__box--img--content
+        .main-screen__wrap__box--img--content
+          - @product.images.each do |image|
+            = image_tag image.image.url
       .main-screen__wrap__box--price
         = @product.price
       .main-screen__wrap__box--subprice
@@ -61,6 +61,14 @@
         .main-screen__wrap__box--option__left
           = icon('fas', 'star')
           お気に入り０
+        .main-screen__wrap__box--option__center
+          - if @product.buyer_id.nil? && current_user.id != @product.saler.id
+            = form_with url: pay_purchase_index_path do |f|
+              =f.hidden_field(:product_id, value: @product.id)
+              :plain
+                <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_4bd5247adc321aea8b52bc3c"></script>
+          - if @product.buyer_id!=nil && @product.saler_id!=nil
+            売り切れました
         .main-screen__wrap__box--option__right
           = link_to  "#", class: 'link_flag' do 
             = icon('fas', 'flag')
@@ -68,7 +76,7 @@
     - if user_signed_in? && current_user.id == @product.saler.id
       .main-screen__wrap__edit
         .main-screen__wrap__edit
-          = link_to "#" do
+          = link_to  edit_product_path(@product.id) do
             .main-screen__wrap__edit__bule
               商品の編集
           .main-screen__wrap__edit__or

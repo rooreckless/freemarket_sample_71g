@@ -1,51 +1,119 @@
-.my-page
-  .my-page__whole
-    .my-page__whole__left-bar
-      .my-page__whole__left-bar__side
-        .my-page__whole__left-bar__side__top
-          マイページメニュー
-        .my-page__whole__left-bar__side__bottom
-          = link_to "#", class: "list" do
-            .my-page__whole__left-bar__side__bottom__all
-              いいねした商品
-      .my-page__whole__left-bar__side
-        .my-page__whole__left-bar__side__top
-          出品
-        .my-page__whole__left-bar__side__bottom
-          = link_to "#", class: "list" do
-            .my-page__whole__left-bar__side__bottom__all
-              商品を出品する
-            .my-page__whole__left-bar__side__bottom__all-b
-              出品した商品
-      .my-page__whole__left-bar__side
-        .my-page__whole__left-bar__side__top
-          購入
-        .my-page__whole__left-bar__side__bottom
-          = link_to "#", class: "list" do
-            .my-page__whole__left-bar__side__bottom__all
-              購入した商品
-      .my-page__whole__left-bar__side
-        .my-page__whole__left-bar__side__top
-          その他
-        .my-page__whole__left-bar__side__bottom
-          = link_to "#", class: "list" do
-            .my-page__whole__left-bar__side__bottom__all
-              設定
-    .my-page__whole__right-bar
-      .my-page__whole__right-bar__title
-        さんのマイページ
-      .my-page__whole__right-bar__side
-        .my-page__whole__right-bar__side__top
-          現在売っている商品
-        .my-page__whole__right-bar__side__bottom
-          .my-page__whole__right-bar__side__bottom__down__list__individual
-            .my-page__whole__right-bar__side__bottom__down__list__individual__whole
-              .my-page__whole__right-bar__side__bottom__down__list__individual__whole__img
-              .my-page__whole__right-bar__side__bottom__down__list__individual__whole__title
-              .my-page__whole__right-bar__side__bottom__down__list__individual__whole__price
-
-
--# .logout
--#   .logout__box
--#     .logout__box__btn
--#       ログアウト
+= render 'layouts/notifications'
+.productNewLow
+  .productNew__logoLow
+    = link_to "#" , class:"#" do
+      %div.productNew__logo
+  .formLow
+    = form_for @product do |f|
+      - if @product.errors.any?
+        .formBox
+          %h2= "#{@product.errors.full_messages.count}件のエラーが発生しました。"
+          %ul
+            - @product.errors.full_messages.each do |message|
+              %li= message
+      .formBox.formBox__image
+        .formBox__texts
+          %span
+            出品画像
+          %span
+            必須
+          .formBox__secondTexts
+            ２枚まで画像を添付できます。
+          #image-box
+            = f.fields_for :images do |pic|
+              .js-file_group{"data-index" => "#{pic.index}"}
+                = pic.file_field :image, class: 'js-file'
+                %br/
+                %span.js-remove 削除
+              - if @product.persisted?
+                = pic.check_box :_destroy, data:{ index: pic.index }, class: 'hidden-destroy'
+            - if @product.persisted?
+              .js-file_group{"data-index" => "#{@product.images.count}"}
+                = file_field_tag :image, name: "product[images_attributes][#{@product.images.count}][image]", class: 'js-file'
+                %br/
+                %span.js-remove 削除
+          #previews
+            - if @product.persisted?
+              - @product.images.each_with_index do |pic, i|
+                = image_tag pic.image.url, data: { index: i }, width: "100", height: '100'
+      %hr
+      .formBox
+        .formBox__texts
+          %span
+            商品名
+          %span
+            必須
+        = f.text_field :name,class: "formBox__name--input", placeholder:"40文字まで"
+        .formBox__texts
+          %span
+            商品の説明
+          %span
+            必須
+        = f.text_area :explanation,class: "formBox__explanation--input", placeholder:"商品の説明（必須 1,000文字以内）&#13;&#10;（色、素材、重さ、定価、注意点など）&#13;&#10;&#13;&#10;例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。あわせやすいのでおすすめです。".html_safe 
+      %hr
+      .formBox#categorySelect__box
+        .formBox__description
+          商品の詳細
+        .formBox__texts
+          %span
+            カテゴリー
+          %span
+            必須
+        .formBox__select#categorySelect1
+          = f.select :category , @category_parent_array, {selected:@product.category.parent.parent.name}, {class:'listing-select-wrapper__box--select', id: 'parent_category'}
+        .formBox__select#categorySelect2
+          = f.select :category, options_for_select(@category_children_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @product.category.parent.id}),{}, {class: 'listing-select-wrapper__box--select2', id: 'parent_category2'}
+        .formBox__select#categorySelect3
+          = f.select :category_id, options_for_select(@category_grandchildren_array.map{|b| [b.name, b.id, {data:{category: b.id}}]}, {prompt: "指定なし", selected: @product.category.id}),{},  {class: 'listing-select-wrapper__box--select3', id: 'parent_category3'}
+        .formBox__texts
+          %span
+            ブランド
+          %span
+            必須
+        = f.text_field :brand,class: "formBox__name--input", placeholder:"例）シャネル"
+        .formBox__texts
+          %span
+            商品の状態
+          %span
+            必須
+        .formBox__select
+          = f.collection_select :status , Statushash.all, :value, :name
+      %hr
+      .formBox
+        .formBox__description
+          配送について
+        .formBox__texts
+          %span
+            発送元の地域
+          %span
+            必須
+        .formBox__select
+          = f.collection_select :place, Prefecture.all, :value, :name
+        .formBox__texts
+          %span
+            発送までの日数
+          %span
+            必須
+        .formBox__select
+          = f.collection_select :shipping_date, Shippinghash.all, :value, :name
+      %hr
+      .formBox
+        .formBox__description
+          価格（¥300〜9,999,999）
+        .formBox__texts.formBox__texts--price
+          %span
+            販売価格
+          %span
+            必須
+          %span
+            ¥
+          = f.number_field :price, class: "formBox__price--input", min: 1, max: 1000000
+      %hr
+      .formBox
+        .formBox__submitLow
+          = f.submit "変更する", class: "formBox__submit"
+          %div
+            = link_to "#",class: "linkBlue" do
+              もどる
+        .noteBox
+          禁止されている行為および出品物を必ずご確認ください。偽ブランド品や盗品物などの販売は犯罪であり、法律により処罰される可能性があります。 また、出品をもちまして加盟店規約に同意したことになります。

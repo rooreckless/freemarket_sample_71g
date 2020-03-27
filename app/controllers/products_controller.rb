@@ -1,9 +1,10 @@
 class ProductsController < ApplicationController
   before_action :move_purchase, only: [:purchase]
   before_action :move_edit_destroy, only: [:edit, :destroy]
-  before_action :set_product, only: [:edit, :show,:destroy,:purchase]
+  before_action :set_product, only: [:edit, :show,:destroy,:purchase,:update]
 
   def index
+    
     @product_new = Product.where(buyer_id: nil).order("created_at DESC").limit(3)
     @product_random = Product.where(buyer_id: nil).order("RAND()").limit(3)
   end
@@ -20,7 +21,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to products_path
+      redirect_to products_path, notice: '商品を出品成功しました。'
     else
       redirect_to new_product_path, notice: '空の値があります'
     end
@@ -30,9 +31,24 @@ class ProductsController < ApplicationController
   end
 
   def edit
+
+    grandchild_category = @product.category
+    child_category = grandchild_category.parent
+
+    @category_parent_array = Category.where(ancestry: nil).pluck(:name)
+
+    @category_children_array = Category.where(ancestry: child_category.ancestry)
+
+    @category_grandchildren_array = Category.where(ancestry: grandchild_category.ancestry)
+
   end
 
   def update
+    if @product.update(update_params)
+      redirect_to root_path, notice: '更新にに成功しました。'
+    else
+      render :edit, alert: '更新に失敗しました。'
+    end
   end
 
   def destroy
@@ -63,6 +79,11 @@ class ProductsController < ApplicationController
     redirect_to root_path unless current_user.id != Product.find(params[:id]).saler.id
     end
     
+
+  def update_params
+    params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image,:id,:_destroy]).merge(saler_id: current_user.id)
+  end
+
   def set_product
     @product = Product.find(params[:id])
   end

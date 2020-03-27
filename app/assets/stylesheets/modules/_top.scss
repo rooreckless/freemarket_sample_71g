@@ -325,6 +325,9 @@ header{
           &--image{
             height: 150px;
             background-color: darkgrey;
+            & img{
+              width: 100% !important;
+            }
           }
           &--underBox{
             background-color: $mainWhite;

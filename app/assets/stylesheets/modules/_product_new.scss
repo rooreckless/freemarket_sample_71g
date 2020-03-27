@@ -23,22 +23,31 @@
     & .formBox__image{
       display: flex;
       justify-content: space-between;
+      & .js-remove{
+        background-color: $mainBlue;
+        padding: 3px;
+        cursor: pointer;
+        margin-top: 5px;
+      }
     }
     & .formBox{
       padding:40px;
       background-color: $mainWhite;
       &__texts{
         font-size: 14px;
-        & :nth-child(1){
-          font-weight: bold;
-        }
-        & :nth-child(2){
-          margin-left: 5px;
-          font-size: 12px;
-          background-color: $mainBlue;
-          color: $mainWhite;
-          padding: 1px;
-        }
+        margin-right: 20px;
+        & span{
+          &:nth-child(1){
+            font-weight: bold;
+          }
+          &:nth-child(2){
+            font-size: 12px;
+            background-color: $mainBlue;
+            color: $mainWhite;
+            padding: 1px;
+            margin-left: 5px;
+          }
+      }
         &--price{
           height: 48px;
           line-height: 48px;
@@ -52,7 +61,7 @@
 
       &__secondTexts{
         font-size: 14px;
-        margin-top: 15px;
+        margin: 15px 0;
       }
       &__imageBox{
         height: 167px;
@@ -66,6 +75,7 @@
         }
         &--image{
           display: none;
+
         }
         & .fas{
           font-size: 30px;
@@ -146,6 +156,22 @@
         font-size: 12px;
         margin-top: 40px;
       }
+    }
+  }
+}
+#image-box{
+  display: flex;
+  & .js-file_group{
+    margin-bottom: 20px;
+  }
+}
+#previews{
+  width: 200px;
+  display: flex;
+  & img{
+    width: 100% !important;
+    &:nth-child(2){
+      margin-left: 110px;
     }
   }
 }
