@@ -61,7 +61,7 @@
 
       &__secondTexts{
         font-size: 14px;
-        margin-top: 15px;
+        margin: 15px 0;
       }
       &__imageBox{
         height: 167px;
@@ -160,7 +160,17 @@
   }
 }
 #image-box{
+  display: flex;
   & .js-file_group{
     margin-bottom: 20px;
+  }
+}
+#previews{
+  width: 200px;
+  display: flex;
+  & img{
+    &:nth-child(2){
+      margin-left: 110px;
+    }
   }
 }
