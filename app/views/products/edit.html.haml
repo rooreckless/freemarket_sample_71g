@@ -19,23 +19,23 @@
             必須
           .formBox__secondTexts
             ２枚まで画像を添付できます。
+          #image-box
+            = f.fields_for :images do |pic|
+              .js-file_group{"data-index" => "#{pic.index}"}
+                = pic.file_field :image, class: 'js-file'
+                %br/
+                %span.js-remove 削除
+              - if @product.persisted?
+                = pic.check_box :_destroy, data:{ index: pic.index }, class: 'hidden-destroy'
+            - if @product.persisted?
+              .js-file_group{"data-index" => "#{@product.images.count}"}
+                = file_field_tag :image, name: "product[images_attributes][#{@product.images.count}][image]", class: 'js-file'
+                %br/
+                %span.js-remove 削除
           #previews
             - if @product.persisted?
               - @product.images.each_with_index do |pic, i|
                 = image_tag pic.image.url, data: { index: i }, width: "100", height: '100'
-        #image-box
-          = f.fields_for :images do |pic|
-            .js-file_group{"data-index" => "#{pic.index}"}
-              = pic.file_field :image, class: 'js-file'
-              %br/
-              %span.js-remove 削除
-            - if @product.persisted?
-              = pic.check_box :_destroy, data:{ index: pic.index }, class: 'hidden-destroy'
-          - if @product.persisted?
-            .js-file_group{"data-index" => "#{@product.images.count}"}
-              = file_field_tag :image, name: "product[images_attributes][#{@product.images.count}][image]", class: 'js-file'
-              %br/
-              %span.js-remove 削除
       %hr
       .formBox
         .formBox__texts
