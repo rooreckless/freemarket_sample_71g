@@ -37,7 +37,8 @@ class PurchaseController < ApplicationController
   # 「購入した商品」を更新するためsaveしますが、
   if purchased_product.save
     #saveに成功すれば、完了画面へ
-    redirect_to action: 'done' #完了画面に移動
+    # redirect_to action: 'done' #完了画面に移動
+    redirect_to product_path(params.require(:product_id)), notice: '購入完了しました。'
     # saveに失敗したらflashを表示し、商品詳細画面に戻ります。
   else
     redirect_to product_path(params.require(:product_id)), notice: 'エラーが発生しました。'
