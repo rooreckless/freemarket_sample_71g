@@ -25,9 +25,9 @@ class PurchaseController < ApplicationController
     card = Card.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
-    :amount => purchased_product.price, #支払金額を入力（購入した商品を元に、テーブルの値をとってきます。）
-    :customer => card.customer_id, #顧客ID
-    :currency => 'jpy', #日本円
+    amount: purchased_product.price, #支払金額を入力（購入した商品を元に、テーブルの値をとってきます。）
+    customer: card.customer_id, #顧客ID
+    currency: 'jpy', #日本円
   )
 
   #購入後のデータベース書き込み処理 

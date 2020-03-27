@@ -20,7 +20,7 @@
           %li.rightlists__right
             = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "linkBlack"
           %li.rightlists__left
-            = link_to "マイページ","/users/#{current_user.id}", class: "linkBlack"
+            = link_to "マイページ", user_path(current_user), class: "linkBlack"
         - else
           %li.rightlists__left
             = link_to "ログイン", new_user_session_path, class: "linkBlack"
