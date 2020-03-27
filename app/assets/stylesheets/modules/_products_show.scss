@@ -25,11 +25,11 @@
       }
 
       &--img{
-        height: 433px;
-        margin: 0px 30px;
-        
-        &--cntent{
-          height: 346px;
+        width: 50%;
+        height: 50%;
+
+          &--content{
+            display: inline-flex;
         }
       }
 

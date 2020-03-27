@@ -5,7 +5,9 @@
       .main-screen__wrap__box--name
         = @product.name
       .main-screen__wrap__box--img
-      .main-screen__wrap__box--img--content
+        .main-screen__wrap__box--img--content
+          - @product.images.each do |image|
+            = image_tag image.image.url
       .main-screen__wrap__box--price
         = @product.price
       .main-screen__wrap__box--subprice
