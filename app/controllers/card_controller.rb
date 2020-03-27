@@ -22,7 +22,9 @@ class CardController < ApplicationController
         # redirect_to action: "show"
         redirect_to card_path(@card.id)
       else
-        redirect_to action: "pay"
+        # カード登録の際にエラーが出たら、再度、登録画面に戻し増す。
+        redirect_to new_card_path, notice: 'カード登録時にエラーが発生しました。'
+
       end
     end
   end
