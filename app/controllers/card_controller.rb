@@ -7,7 +7,9 @@ class CardController < ApplicationController
     redirect_to action: "show" if card.exists?
   end
 
+  #cardコントローラのpayアクションは 何やってるのかわからないけど残しときます。
   def pay 
+    
     Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     if params['payjp-token'].blank?
       redirect_to action: "new"

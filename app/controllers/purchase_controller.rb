@@ -18,13 +18,33 @@ class PurchaseController < ApplicationController
   end
 
   def pay
+    # params.require(:product_id)はviews/purchase/show.html.hamlの「form_with url: pay_purchase_index_path」のf.hiddenfieldからくる値=params.require(:product_id)=購入した商品のid
+    # この「購入した商品のid」でテーブルを検索します。
+    purchased_product=Product.find(params.require(:product_id))
+
     card = Card.where(user_id: current_user.id).first
     Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
     Payjp::Charge.create(
-    :amount => 13500, #支払金額を入力（itemテーブル等に紐づけても良い）
+    :amount => purchased_product.price, #支払金額を入力（購入した商品を元に、テーブルの値をとってきます。）
     :customer => card.customer_id, #顧客ID
     :currency => 'jpy', #日本円
   )
-  redirect_to action: 'done' #完了画面に移動
+
+  #購入後のデータベース書き込み処理 
+  
+  # 検索結果の「購入した商品」のbuyer_idカラムの値を、「購入したときのcardのuser_id」でセットします。
+  purchased_product.buyer_id=card.user_id
+  # 「購入した商品」を更新するためsaveしますが、
+  if purchased_product.save
+    #saveに成功すれば、完了画面へ
+    redirect_to action: 'done' #完了画面に移動
+    # saveに失敗したらflashを表示し、商品詳細画面に戻ります。
+  else
+    redirect_to product_path(params.require(:product_id)), notice: 'エラーが発生しました。'
+  end
+  
+  end
+  def done
+    
   end
 end
