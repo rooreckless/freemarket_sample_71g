@@ -1,0 +1,96 @@
+.card__main{
+  height:calc(100vh - 300px);
+  width: 100vw;
+  background-color:#f8f8f8;
+  &__form{
+    width: 50%;
+    height: 100%;
+    margin-left: 25%;
+    background-color: #fff;
+    padding-bottom: 5px;
+    
+    &--title{
+      height:50px;
+      width:100%;
+      text-align: center;
+      border-bottom: 2px solid #f8f8f8;
+      h1{
+       padding-top: 10px;
+       font-size: x-large;
+       font-weight: 900;
+      }
+    }
+    &--number{
+      margin-top: 30px;
+      height:65px;
+      margin-left: 25%;
+      span{
+        font-size: small;
+        background-color: $mainBlue;
+      }
+      
+      &--input{
+        height:50px;
+        width: 65%;
+      }
+    }
+    &--period{
+      sapan{
+        font-size: small;
+        background-color: $mainBlue;
+      }
+      
+      
+      
+      height:65px;
+      margin-left: 25%;
+      
+      &__input{
+        display:flex;
+        .select{
+          height:50px;
+          width:150px;
+          background-color: #fff;
+        }
+        
+        
+      }
+    }
+    &--code{
+      
+      height:65px;
+      margin-left: 25%;
+      .cvc{
+        height: 50px;
+        width: 65%;
+      }
+      span{
+        font-size: small;
+        background-color: $mainBlue;
+      }
+    }
+    &--submit{
+      margin-top: 20px;
+      height:50px;
+      width: 50%;
+      margin-left: 25%;
+      text-align: center;
+      background-color: $mainBlue;
+      margin-bottom: 30px;
+
+      .token_submit{
+        height: 50px;
+        width: 100%;
+        background-color: $mainBlue;
+        color: #fff;
+        
+      }
+    }
+    label{
+      font-weight: 900;
+    }
+    
+  
+    
+  }
+}
