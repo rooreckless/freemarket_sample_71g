@@ -3,5 +3,6 @@ FactoryBot.define do
     user_id           {"1"}
     customer_id       {"1"}
     card_id           {"1"}
+    association :user
   end
 end
