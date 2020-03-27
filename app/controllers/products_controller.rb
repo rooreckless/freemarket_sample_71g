@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :move_purchase, only: [:purchase]
+  # before_action :move_purchase, only: [:purchase]   ????
   before_action :move_edit_destroy, only: [:edit, :destroy]
   before_action :set_product, only: [:edit, :show,:destroy,:purchase,:update]
 
