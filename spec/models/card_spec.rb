@@ -11,6 +11,7 @@ describe Card do
     context 'log in' do
       before do
         login user
+        # card_params  user_id current_user.id 
       end
 
       it "user_idが空では登録できない" do
