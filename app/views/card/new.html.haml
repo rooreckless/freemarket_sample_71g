@@ -53,8 +53,8 @@
         %span 必須
         %br
         = text_field_tag "cvc", "", class: "cvc", placeholder: "カード背面3~4桁の番号", maxlength: "4", id: "cvc"
-        #card_token
+        
       %br
-      .card__main__form--submit
-        = submit_tag "追加する", class: "token_submit" 
+      #card_token
+        = submit_tag "追加する", id: "token_submit" 
 = render 'devise/footer'
