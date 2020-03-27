@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
-
-  before_action :set_product, only: [:edit, :show,:destroy,:edit,:update]
+  before_action :move_purchase, only: [:purchase]
+  before_action :move_edit_destroy, only: [:edit, :destroy]
+  before_action :set_product, only: [:edit, :show,:destroy,:purchase,:update]
 
   def index
     
@@ -66,10 +67,18 @@ class ProductsController < ApplicationController
     @category_grandchildren = Category.find("#{params[:child_id]}").children
  end
 
+ def purchase
+ end
+
   private
   def product_params 
     params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image]).merge(saler_id: current_user.id)
   end
+  
+  def move_index
+    redirect_to root_path unless current_user.id != Product.find(params[:id]).saler.id
+    end
+    
 
   def update_params
     params.require(:product).permit(:status, :name, :explanation, :price, :place, :shipping_date,:brand,:category_id,images_attributes: [:image,:id,:_destroy]).merge(saler_id: current_user.id)
@@ -78,4 +87,8 @@ class ProductsController < ApplicationController
   def set_product
     @product = Product.find(params[:id])
   end
-end
+
+  def move_edit_destroy
+    redirect_to root_path unless current_user.id == Product.find(params[:id]).saler.id
+    end
+  end

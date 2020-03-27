@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   #また、デプロイが確認されたあとは、deploytestコントローラと、views内のdeploytestディレクトリも削除願います。
   resources :users, only: [:show,:index]
   resources :addresses, only: [:new, :create, :index]
-  resources :products  do
+  resources :products do
+    member do
+      get 'purchase'
+    end
     collection do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
