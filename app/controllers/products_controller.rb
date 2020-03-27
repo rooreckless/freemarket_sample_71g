@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:edit, :show,:destroy,:edit,:update]
 
   def index
+    
     @product_new = Product.where(buyer_id: nil).order("created_at DESC").limit(3)
     @product_random = Product.where(buyer_id: nil).order("RAND()").limit(3)
   end

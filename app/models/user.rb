@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   validates :nikname ,presence: true
   has_one :confirm
+  has_one :card
   accepts_nested_attributes_for :confirm
   has_many :addresses
   has_many :products

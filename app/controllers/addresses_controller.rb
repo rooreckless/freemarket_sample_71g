@@ -8,7 +8,7 @@ class AddressesController < ApplicationController
 
   def create
     @address = Address.create(address_params)
-    redirect_to products_path
+    redirect_to new_card_path
   end
 
   private
