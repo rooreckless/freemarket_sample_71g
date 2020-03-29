@@ -25,7 +25,9 @@ class PurchaseController < ApplicationController
     card = Card.where(user_id: current_user.id).first
     puts "purchase_pay--1"
     logger.info 'purchase_pay--1'
-    Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    # Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
+    # 上のENVで読み込めていない様子なので、直接PAYJP_PRIVATE_KEYを与えてみます。
+    Payjp.api_key = 'sk_test_a1e32f13f3b2adc61a44ad06'
     puts "purchase_pay--2"
     logger.info 'purchase_pay--2'
     Payjp::Charge.create(

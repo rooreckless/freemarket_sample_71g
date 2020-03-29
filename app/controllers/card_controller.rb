@@ -10,7 +10,9 @@ class CardController < ApplicationController
   def pay 
     puts "card_pay--1"
     logger.info 'card_pay--1'
-    Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    # Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+    # 上のENVで読み込めていない様子なので、直接PAYJP_PRIVATE_KEYを与えてみます。
+    Payjp.api_key = 'sk_test_a1e32f13f3b2adc61a44ad06'
     puts "card_pay--2"
     logger.info 'card_pay--2'
     if params['payjp-token'].blank?
@@ -22,6 +24,8 @@ class CardController < ApplicationController
       logger.info "params = #{params}"
       logger.info "Payjp.api_key = #{Payjp.api_key}"
       logger.info "ENV['PAYJP_PRIVATE_KEY'] =#{ENV['PAYJP_PRIVATE_KEY']}"
+      logger.info "ENV['PAYJP_KEY'] =#{ENV['PAYJP_KEY']}"
+      logger.info "ENV=#{ENV}"
       #本番環境はこの下のPayjp::Customer.createでエラー見たいなので、デバッグ用にいろいろログに書いています。--------
       customer = Payjp::Customer.create(
       card: params['payjp-token'],
