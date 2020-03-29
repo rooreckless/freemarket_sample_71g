@@ -1,5 +1,4 @@
 class CardController < ApplicationController
-
   require "payjp"
 
   def new
@@ -12,7 +11,9 @@ class CardController < ApplicationController
     logger.info 'card_pay--1'
     # Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
     # 上のENVで読み込めていない様子なので、直接PAYJP_PRIVATE_KEYを与えてみます。
-    Payjp.api_key = 'sk_test_a1e32f13f3b2adc61a44ad06'
+    # Payjp.api_key = 'sk_test_a1e32f13f3b2adc61a44ad06'
+    # できれば直接apiキーを書きたくないので、Rails.application.credentials[:payjp_private_key]として、credentials.yml.encの内容を読むことにします。
+    Payjp.api_key = Rails.application.credentials[:payjp_private_key]
     puts "card_pay--2"
     logger.info 'card_pay--2'
     if params['payjp-token'].blank?
@@ -24,7 +25,9 @@ class CardController < ApplicationController
       logger.info "params = #{params}"
       logger.info "Payjp.api_key = #{Payjp.api_key}"
       logger.info "ENV['PAYJP_PRIVATE_KEY'] =#{ENV['PAYJP_PRIVATE_KEY']}"
+      puts "ENV['PAYJP_PRIVATE_KEY'] =#{ENV['PAYJP_PRIVATE_KEY']}"
       logger.info "ENV['PAYJP_KEY'] =#{ENV['PAYJP_KEY']}"
+      puts "ENV['PAYJP_KEY'] =#{ENV['PAYJP_KEY']}"
       logger.info "ENV=#{ENV}"
       #本番環境はこの下のPayjp::Customer.createでエラー見たいなので、デバッグ用にいろいろログに書いています。--------
       customer = Payjp::Customer.create(
@@ -52,7 +55,9 @@ class CardController < ApplicationController
   def delete #PayjpとCardデータベースを削除します
     card = Card.where(user_id: current_user.id).first
     if card.present?
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      # Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      # できれば直接apiキーを書きたくないので、Rails.application.credentials[:payjp_private_key]として、credentials.yml.encの内容を読むことにします。
+      Payjp.api_key = Rails.application.credentials[:payjp_private_key]
       customer = Payjp::Customer.retrieve(card.customer_id)
       customer.delete
       card.delete
@@ -65,7 +70,9 @@ class CardController < ApplicationController
     if card.blank?
       redirect_to action: "new" 
     else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      # Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      # できれば直接apiキーを書きたくないので、Rails.application.credentials[:payjp_private_key]として、credentials.yml.encの内容を読むことにします。
+      Payjp.api_key = Rails.application.credentials[:payjp_private_key]
       customer = Payjp::Customer.retrieve(card.customer_id)
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
