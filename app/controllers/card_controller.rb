@@ -19,16 +19,18 @@ class CardController < ApplicationController
     if params['payjp-token'].blank?
       redirect_to action: "new"
     else
+      # デバッグ用表示部分
       puts "card_pay--3"
       logger.info 'card_pay--3'
       logger.info "current_user.id = #{current_user.id}"
       logger.info "params = #{params}"
       logger.info "Payjp.api_key = #{Payjp.api_key}"
-      logger.info "ENV['PAYJP_PRIVATE_KEY'] =#{ENV['PAYJP_PRIVATE_KEY']}"
+      logger.info "ENV['PAYJP_PRIVATE_KEY'] =#{ENV['PAYJP_PRIVATE_KEY']}"#=>secrets.yml.encを使用しているのでENV['PAYJP_PRIVATE_KEY']はRails.application.credentials[:payjp_private_key]に取って代わります。
       puts "ENV['PAYJP_PRIVATE_KEY'] =#{ENV['PAYJP_PRIVATE_KEY']}"
       logger.info "ENV['PAYJP_KEY'] =#{ENV['PAYJP_KEY']}"
       puts "ENV['PAYJP_KEY'] =#{ENV['PAYJP_KEY']}"
       logger.info "ENV=#{ENV}"
+      
       #本番環境はこの下のPayjp::Customer.createでエラー見たいなので、デバッグ用にいろいろログに書いています。--------
       customer = Payjp::Customer.create(
       card: params['payjp-token'],

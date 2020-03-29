@@ -9,7 +9,10 @@ class PurchaseController < ApplicationController
       #登録された情報がない場合にカード登録画面に移動
       redirect_to controller: "card", action: "new"
     else
-      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      # Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      # dotenv-railsが使えていないが、できれば直接apiキーを書きたくないので、Rails.application.credentials[:payjp_private_key]として、credentials.yml.encの内容を読むことにします。
+      Payjp.api_key = Rails.application.credentials[:payjp_private_key]
+    
       #保管した顧客IDでpayjpから情報取得
       customer = Payjp::Customer.retrieve(card.customer_id)
       #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
@@ -26,8 +29,8 @@ class PurchaseController < ApplicationController
     puts "purchase_pay--1"
     logger.info 'purchase_pay--1'
     # Payjp.api_key = ENV['PAYJP_PRIVATE_KEY']
-    # 上のENVで読み込めていない様子なので、直接PAYJP_PRIVATE_KEYを与えてみます。
-    Payjp.api_key = 'sk_test_a1e32f13f3b2adc61a44ad06'
+    # dotenv-railsが使えていないが、できれば直接apiキーを書きたくないので、Rails.application.credentials[:payjp_private_key]として、credentials.yml.encの内容を読むことにします。
+    Payjp.api_key = Rails.application.credentials[:payjp_private_key]
     puts "purchase_pay--2"
     logger.info 'purchase_pay--2'
     Payjp::Charge.create(
