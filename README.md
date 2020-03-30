@@ -8,7 +8,7 @@
 
 ## Association
 has_many :confirms
-has_many :credits
+has_many :cards
 has_many :addresses
 has_many :products
 
@@ -25,13 +25,12 @@ has_many :products
 ## Association
 belongs_to : user
 
-## creditテーブル
+## cardテーブル
 |Column|Type|Options|
 |------|----|-------|
-|card_number|string|null: false|
-|expiry_date|string|null: false|
-|security_code|string|null: false|
-|user_id|integer||
+|user_id|integer|null:false, foreign_key: true|
+|customer_id|string|null:false, foreign_key: true|
+|card_id|string|null:false, foreign_key: true|
 
 ## Association
 belongs_to : user
@@ -58,7 +57,7 @@ belongs_to : user
 ## productテーブル
 |column|Type|Options|
 |------|----|-------|
-|status|integer|null: false|
+|status|string|null: false|
 |name|string|null: false|
 |explanation|text|null: false|
 |brand|string|null: false|
