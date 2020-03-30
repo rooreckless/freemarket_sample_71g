@@ -7,6 +7,7 @@
     margin: 0 auto;
     padding: 20px 0;
     display: flex;
+    height: 80%;
     &__left-bar{
       width: 25%;
       padding-right: 20px;
@@ -20,12 +21,6 @@
           margin-bottom: 8px;
         }
         &__bottom{
-          // border: 1px solid #e5e5e5;
-          // font-size: 15px;
-          // padding: 9px 16px;
-          // background-color: #FFFFFF;
-          // font-weight: lighter;
-          // color: black;
           &__all{
             border: 1px solid #e5e5e5;
             font-size: 15px;
@@ -33,7 +28,6 @@
             background-color: #FFFFFF;
             font-weight: lighter;
             color: black;
-            // margin-bottom: -1px;
           }
           &__all-b{
             border: 1px solid #e5e5e5;
@@ -48,17 +42,6 @@
             display: block;
             color: black;
             padding: 9px 16px;
-            // &__all{
-            //   border: 1px solid #e5e5e5;
-            //   font-size: 15px;
-            //   padding: 9px 16px;
-            //   background-color: #FFFFFF;
-            //   font-weight: lighter;
-            //   color: black;
-            //   margin-bottom: -1px;
-            // }
-            // &__all-b{
-            // }
           }
         &__bottom:hover{
           border: 1px solid #e5e5e5;
@@ -76,6 +59,7 @@
     }
     &__right-bar{
       width: 75%;
+      height: 100%;
       &__title{
         font-size: 16px;
         font-weight: bold;

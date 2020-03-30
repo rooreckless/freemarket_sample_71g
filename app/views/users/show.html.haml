@@ -33,9 +33,7 @@
           = link_to new_card_path, class: "list" do
             .my-page__whole__left-bar__side__bottom__all
               登録(再登録)/変更
-        .my-page__whole__left-bar__side__bottom
-          = link_to delete_card_index_path  do
-            .my-page__whole__left-bar__side__bottom__all
+            .my-page__whole__left-bar__side__bottom__all-b
               削除
       .my-page__whole__left-bar__side
         .my-page__whole__left-bar__side__top
@@ -58,7 +56,3 @@
               .my-page__whole__right-bar__side__bottom__down__list__individual__whole__price
 
 = render "products/footer"
-  -# .exhibitionBtn
-  -#   %p
-  -#     出品する
-  -#   %div
