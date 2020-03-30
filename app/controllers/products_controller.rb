@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
   end
   def search
     # search.html.hamlには「売り切れではなく、商品の更新日時の降順」で表示します。
-    @products = Product.where.not(buyer_id: nil).order("updated_at DESC")..page(params[:page]).per(9)
+    @products = Product.where(buyer_id: nil).order("updated_at DESC").page(params[:page]).per(9)
     # @products = Product.all
   end
   def new
