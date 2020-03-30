@@ -1,9 +1,9 @@
+
 class ProductsController < ApplicationController
-  # before_action :move_purchase, only: [:purchase]   ????
   before_action :move_edit_destroy, only: [:edit, :destroy]
   before_action :set_product, only: [:edit, :show,:destroy,:purchase,:update]
   before_action :authenticate_user!, except: [:show,:index]
-
+  
   def index
     
     @product_new = Product.where(buyer_id: nil).order("created_at DESC").limit(3)
@@ -20,7 +20,11 @@ class ProductsController < ApplicationController
   end
 
   def create
+    # new.html.hamlにて入力された商品の値段はparams.require(:product)[:price]でとれます。(ただし、string型)この値段を税込み価格に変更してもらうProductクラスのメソッドを呼び出します。
+    params.require(:product)[:price]=Product.taxingPrice(params.require(:product)[:price])
+    
     @product = Product.new(product_params)
+
     if @product.save
       redirect_to products_path, notice: '商品を出品成功しました。'
     else
@@ -32,7 +36,8 @@ class ProductsController < ApplicationController
   end
 
   def edit
-
+    # show.html.hamlにて表示している価格を、edit.html.hamlでは「消費税抜き」に表示するため、Productクラスのメソッドを呼び出します。
+    @product.price = Product.detaxingPrice(@product.price)
     grandchild_category = @product.category
     child_category = grandchild_category.parent
 
@@ -45,6 +50,9 @@ class ProductsController < ApplicationController
   end
 
   def update
+    # edit.html.hamlにて入力された商品の値段はparams.require(:product)[:price]でとれます。(ただし、string型)この値段を税込み価格に変更してもらうProductクラスのメソッドを呼び出します。
+    params.require(:product)[:price]=Product.taxingPrice(params.require(:product)[:price])
+    
     if @product.update(update_params)
       redirect_to root_path, notice: '更新にに成功しました。'
     else
