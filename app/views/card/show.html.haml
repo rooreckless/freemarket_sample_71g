@@ -17,5 +17,8 @@
         = form_tag(delete_card_index_path, method: :post, id: 'charge-form',  name: "inputForm") do
           %input{ type: "hidden", name: "card_id", value: "" }
           %button 削除する
+      .card__show__main--mypage
+        = link_to root_path class:"mypage__btn" do
+          マイページへ戻る
 
 = render 'devise/footer'
