@@ -1,0 +1,36 @@
+.card__show{
+  height: calc(100vh - 300px);
+  width: 100vw;
+  background-color:  $mainGray;
+  &__main{
+    width: 50%;
+    height:80%;
+    margin-left:25%;
+    background-color: $mainWhite;
+    &--title{
+      height: 50px;
+      font-weight: 900;
+      text-align: center;
+      font-size: 25px;
+      border-bottom: solid  $mainGray;
+      p{
+        padding-top:6px ;
+      }
+    }
+    &--text{
+      margin-top: 65px;
+      margin-left: 20%;
+      label{
+        font-weight: 600;
+      }
+    }
+    &--expiration{
+      background-color: $mainWhite;
+      button{
+        height:30px;
+        width:80px;
+        background-color: $mainWhite;
+      }
+    }
+  }
+}
