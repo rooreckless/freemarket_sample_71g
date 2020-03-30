@@ -26,7 +26,6 @@
       &--img{
         width: 80px;
         height: 80px;
-        border: 1px solid red;
       }
 
       &--text{
@@ -96,6 +95,7 @@
         &__register{
             display: flex;
             color: $mainBlue;
+            margin-top: 10px;
         }
 
         &__purchase{
