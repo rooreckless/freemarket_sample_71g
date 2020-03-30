@@ -5,7 +5,7 @@
       = link_to root_path, class: "logoBox" do
         %div
       .searchBox
-        = form_with model:@post,class: "searchBox__form", local: true, url: {controller: 'products', action: 'result' } do |f|
+        = form_with model:@post,class: "searchBox__form", local: true do |f|
           = f.text_field :content,class: "searchBox__input", placeholder:"キーワードから探す"
           = f.submit "", class: "searchBox__submit"
     .headerLists
@@ -30,7 +30,7 @@
 .main.searchMain
   .fifthContentLow.searcContentLow
     .fifthContent__title
-      New Item
+      ぴっくあっぷかてごりーピックアップカテゴリー
     .fifthContent__box.searchBox
       .fifthContent__box--title
         = link_to "#", class: "linkBlue" do
@@ -38,7 +38,7 @@
       .fifthContent__lists.searchLists
         - @products.each do |product|
           = link_to product_path(product.id), class: "#" do
-            .fifthContent__list.searchList
+            .fifthContent__list
               .fifthContent__list--image
                 - product.images.first(1).each do |image|
                   = image_tag image.image.url
@@ -55,6 +55,5 @@
                     ０
                 %div
                   (税込)
-%div.sarchPaginate
-  = paginate @products
+        = paginate @products
 = render "products/footer"
