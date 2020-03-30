@@ -9,7 +9,10 @@ class ProductsController < ApplicationController
     @product_new = Product.where(buyer_id: nil).order("created_at DESC").limit(3)
     @product_random = Product.where(buyer_id: nil).order("RAND()").limit(3)
   end
-
+  def search
+    @products = Product.all
+    # @products = Product.all.order("created_at DESC").page(params[:page]).per(5)
+  end
   def new
     @product = Product.new
     @product.images.new
