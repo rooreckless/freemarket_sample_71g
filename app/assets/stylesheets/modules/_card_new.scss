@@ -78,19 +78,19 @@
       background-color: $mainBlue;
       margin-bottom: 30px;
 
-      .token_submit{
-        height: 50px;
-        width: 100%;
-        background-color: $mainBlue;
-        color: #fff;
-        
-      }
+     
     }
     label{
       font-weight: 900;
     }
-    
   
+    #token_submit{
+      height: 50px;
+      width: 355px;
+      background-color: $mainBlue;
+      color: #fff;
+      margin-left: 25%;
+    }
     
   }
 }
