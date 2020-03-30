@@ -10,6 +10,7 @@
             = image_tag image.image.url
       .main-screen__wrap__box--price
         = @product.price
+        円
       .main-screen__wrap__box--subprice
         (税込) 送料込み
       - if user_signed_in? && current_user.id != @product.saler.id 
