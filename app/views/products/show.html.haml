@@ -1,4 +1,4 @@
-= render 'layouts/notifications'
+= render "devise/header"
 .main-screen
   .main-screen__wrap
     .main-screen__wrap__box
@@ -12,7 +12,7 @@
         = @product.price
       .main-screen__wrap__box--subprice
         (税込) 送料込み
-      - if user_signed_in? && current_user.id != @product.saler.id 
+      - if  @product.buyer_id.nil? && user_signed_in? && current_user.id != @product.saler.id 
         = link_to purchase_product_url, class: 'link' do
           .main-screen__wrap__box--purchase
             購入確認ページへ移動
@@ -62,12 +62,10 @@
           = icon('fas', 'star')
           お気に入り０
         .main-screen__wrap__box--option__center
-          - if @product.buyer_id.nil? && current_user.id != @product.saler.id
-            = form_with url: pay_purchase_index_path do |f|
-              =f.hidden_field(:product_id, value: @product.id)
-              :plain
-                <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_4bd5247adc321aea8b52bc3c"></script>
-          - if @product.buyer_id!=nil && @product.saler_id!=nil
+          - if @product.buyer_id.nil?
+            - if user_signed_in? ==false
+              = link_to "ログインすると購入できます", new_user_session_path, class: "linkBlue"
+          - else
             売り切れました
         .main-screen__wrap__box--option__right
           = link_to  "#", class: 'link_flag' do 
@@ -107,3 +105,4 @@
     .main-screen__wrap__bottom 
       = link_to "#", class: 'link' do 
         メンズをもっと見る
+= render "devise/footer"

@@ -30,8 +30,8 @@
 public/uploads/*
 
 # .env
-AWS_ACCESS_KEY_ID="spk_test_4bd5247adc321aea8b52bc3c"
-AWS_SECRET_ACCESS_KEY="sk_test_a1e32f13f3b2adc61a44ad06"
+# AWS_ACCESS_KEY_ID="spk_test_4bd5247adc321aea8b52bc3c"
+# AWS_SECRET_ACCESS_KEY="sk_test_a1e32f13f3b2adc61a44ad06"
 
 #dot-envrailsGemを使用した、payjpAPIキーの内容を.envに書きましたが、githubに上げませんのでignoreします。
 # また「git rm -f .env」をローカルから使用し、リモートリポジトリから削除しています。

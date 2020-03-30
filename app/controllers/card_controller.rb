@@ -1,4 +1,6 @@
 class CardController < ApplicationController
+  before_action :authenticate_user!
+  
   require "payjp"
 
   def new
@@ -10,9 +12,7 @@ class CardController < ApplicationController
     puts "card_pay--1"
     logger.info 'card_pay--1'
     # Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
-    # 上のENVで読み込めていない様子なので、直接PAYJP_PRIVATE_KEYを与えてみます。
-    # Payjp.api_key = 'sk_test_a1e32f13f3b2adc61a44ad06'
-    # できれば直接apiキーを書きたくないので、Rails.application.credentials[:payjp_private_key]として、credentials.yml.encの内容を読むことにします。
+    # 上のENVで読み込めていない様子なので、Rails.application.credentials[:payjp_private_key]として、credentials.yml.encの内容を読むことにします。
     Payjp.api_key = Rails.application.credentials[:payjp_private_key]
     puts "card_pay--2"
     logger.info 'card_pay--2'
