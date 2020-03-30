@@ -38,7 +38,7 @@
       .fifthContent__lists.searchLists
         - @products.each do |product|
           = link_to product_path(product.id), class: "#" do
-            .fifthContent__list
+            .fifthContent__list.searchList
               .fifthContent__list--image
                 - product.images.first(1).each do |image|
                   = image_tag image.image.url
@@ -55,5 +55,6 @@
                     ０
                 %div
                   (税込)
-        = paginate @products
+%div.sarchPaginate
+  = paginate @products
 = render "products/footer"
