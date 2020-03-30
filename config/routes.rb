@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show,:index]
   resources :addresses, only: [:new, :create, :index]
   get 'search' ,to: 'products#search'
+  post 'result' ,to: 'products#result'
   # 上記の記述は商品検索ページ用のルートです。
   resources :products do
     member do

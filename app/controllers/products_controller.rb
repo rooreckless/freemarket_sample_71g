@@ -14,7 +14,10 @@ class ProductsController < ApplicationController
     # search.html.hamlには「売り切れではなく、商品の更新日時の降順」で表示します。
     @products = Product.where(buyer_id: nil).order("updated_at DESC").page(params[:page]).per(9)
   end
-
+  def result
+    # search.html.hamlのフォームに入力された値をもとにproductsのnameを曖昧検索します。
+    @products = Product.where("name LIKE ?","%#{params[:content]}%").order("updated_at DESC").page(params[:page]).per(9)
+  end
   def new
     @product = Product.new
     @product.images.new
