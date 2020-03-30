@@ -9,10 +9,12 @@ class ProductsController < ApplicationController
     @product_new = Product.where(buyer_id: nil).order("created_at DESC").limit(3)
     @product_random = Product.where(buyer_id: nil).order("RAND()").limit(3)
   end
+  
   def search
-    @products = Product.where(buyer_id: nil).order("updated_at DESC")
-    # @products = Product.all
+    # search.html.hamlには「売り切れではなく、商品の更新日時の降順」で表示します。
+    @products = Product.where(buyer_id: nil).order("updated_at DESC").page(params[:page]).per(9)
   end
+
   def new
     @product = Product.new
     @product.images.new
