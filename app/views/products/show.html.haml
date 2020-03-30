@@ -12,7 +12,7 @@
         = @product.price
       .main-screen__wrap__box--subprice
         (税込) 送料込み
-      - if user_signed_in? && current_user.id != @product.saler.id 
+      - if  @product.buyer_id.nil? && user_signed_in? && current_user.id != @product.saler.id 
         = link_to purchase_product_url, class: 'link' do
           .main-screen__wrap__box--purchase
             購入確認ページへ移動
