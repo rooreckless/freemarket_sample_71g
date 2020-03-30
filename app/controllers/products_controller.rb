@@ -10,7 +10,8 @@ class ProductsController < ApplicationController
     @product_random = Product.where(buyer_id: nil).order("RAND()").limit(3)
   end
   def search
-    @products = Product.where.not(buyer_id: nil).order("updated_at DESC")
+    # search.html.hamlには「売り切れではなく、商品の更新日時の降順」で表示します。
+    @products = Product.where.not(buyer_id: nil).order("updated_at DESC").limit(9)
     # @products = Product.all
   end
   def new
