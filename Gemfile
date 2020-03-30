@@ -91,4 +91,5 @@ gem 'font-awesome-sass'
 gem 'fog-aws'
 gem 'active_hash'
 gem 'payjp'
-gem 'dotenv-rails'
+# gem 'dotenv-rails'
+#なくても使えました(ローカルで)。
