@@ -62,13 +62,7 @@
           = icon('fas', 'star')
           お気に入り０
         .main-screen__wrap__box--option__center
-          - if @product.buyer_id.nil? && current_user.id != @product.saler.id
-            = form_with url: pay_purchase_index_path do |f|
-              =f.hidden_field(:product_id, value: @product.id)
-              :plain
-                <script type="text/javascript" src="https://checkout.pay.jp" class="payjp-button" data-key="pk_test_4bd5247adc321aea8b52bc3c"></script>
-          - if @product.buyer_id!=nil && @product.saler_id!=nil
-            売り切れました
+          
         .main-screen__wrap__box--option__right
           = link_to  "#", class: 'link_flag' do 
             = icon('fas', 'flag')
