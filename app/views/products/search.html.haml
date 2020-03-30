@@ -27,15 +27,15 @@
             = link_to "ログイン", new_user_session_path, class: "linkBlack"
           %li.rightlists__right
             = link_to "新規登録", new_user_registration_path, class: "linkBlack"
-.main
-  .fifthContentLow
+.main.searchMain
+  .fifthContentLow.searcContentLow
     .fifthContent__title
       ピックアップカテゴリー
-    .fifthContent__box
+    .fifthContent__box.searchBox
       .fifthContent__box--title
         = link_to "#", class: "linkBlue" do
           新規投稿商品 
-      .fifthContent__lists
+      .fifthContent__lists.searchLists
         - @products.each do |product|
           = link_to product_path(product.id), class: "#" do
             .fifthContent__list
