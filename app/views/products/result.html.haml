@@ -5,7 +5,7 @@
       = link_to root_path, class: "logoBox" do
         %div
       .searchBox
-        = form_with model:@post,class: "searchBox__form", local: true do |f|
+        = form_with model:@product,class: "searchBox__form", local: true, id: "result_form" do |f|
           = f.text_field :content,class: "searchBox__input", placeholder:"キーワードから探す"
           = f.submit "", class: "searchBox__submit"
     .headerLists
@@ -30,7 +30,7 @@
 .main.searchMain
   .fifthContentLow.searcContentLow
     .fifthContent__title
-      ぴっくあっぷかてごりーピックアップカテゴリー
+      検索結果
     .fifthContent__box.searchBox
       .fifthContent__box--title
         = link_to "#", class: "linkBlue" do
@@ -53,6 +53,10 @@
                   %div
                     %i.fa.fa-star.likeIcon
                     ０
+                  %div
+                    出品者
+                    = User.find(product.saler_id).nikname
+                    さん
                 %div
                   (税込)
         = paginate @products
