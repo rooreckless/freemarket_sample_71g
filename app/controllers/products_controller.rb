@@ -18,8 +18,6 @@ class ProductsController < ApplicationController
     
   end
   def result
-    # binding.pry
-    puts "--products#result--"
     # search.html.hamlのフォームに入力された値をもとにproductsのnameを曖昧検索します。
     @products = Product.includes(:images).where("name LIKE ?","%#{params[:content]}%").order("updated_at DESC").page(params[:page]).per(9)
     # ajax通信後のjson.jbuilderに対応する配列(画像のファイル名と出品者名)を設定します。

@@ -43,15 +43,9 @@ $(function(){
     //ajax通信ではフォームの内容をまるごとわたします。(ある意味でhtml版と同じ感覚で)それでもparams(:content)で同様に入力値だけ引き出せます。
     // どうしても入力値だけ渡したいならdocument.getElementById("content").valueです。
     var formData = new FormData(this);
-    // デバッグ用表示部分
-    console.log("---jqueryによるid=contentのinput要素の中身(=value)の表示----$('#content').val()---");
-    console.log($("#content").val());
-    // 上はhttps://maku77.github.io/js/jquery/form.htmlを参考に、フォームの入力内容をjqueryで参照しています。
-    console.log("---javascriptによるid=contentのinput要素の中身(=value)の表示----document.getElementById('content').value---");
     //ajax通信でのdata(フォーム)の渡し先をフォームのaction値と同じにしたのでhtml版と同じになります。
     var url = $(this).attr('action');
     //ajax通信開始
-    console.log("ajax通信開始します。dataがformdataならば、processDataとcontentTypeはfalseにしてください。");
     $.ajax({
       url: url,
       type: "POST",
