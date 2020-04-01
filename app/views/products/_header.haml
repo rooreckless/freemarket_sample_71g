@@ -4,7 +4,7 @@
       = link_to root_path, class: "logoBox" do
         %div
       .searchBox
-        = form_with model:@post,class: "searchBox__form", local: true do |f|
+        = form_with model:@post,class: "searchBox__form", local: true, url: {controller: 'products', action: 'result' } do |f|
           = f.text_field :content,class: "searchBox__input", placeholder:"キーワードから探す"
           = f.submit "", class: "searchBox__submit"
     .headerLists
@@ -13,8 +13,8 @@
           = link_to "#", class: "linkBlack" do
             カテゴリー
         %li.leftlists__right
-          = link_to "#", class: "linkBlack" do
-            ブランド
+          = link_to search_path, class: "linkBlack" do
+            商品一覧
       %ul.rightlists
         - if user_signed_in?
           %li.rightlists__left

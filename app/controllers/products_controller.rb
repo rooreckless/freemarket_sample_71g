@@ -9,7 +9,38 @@ class ProductsController < ApplicationController
     @product_new = Product.where(buyer_id: nil).order("created_at DESC").limit(3)
     @product_random = Product.where(buyer_id: nil).order("RAND()").limit(3)
   end
-
+  
+  def search
+    # search.html.hamlには「売り切れではなく、商品の更新日時の降順」で表示します。
+    @products = Product.where(buyer_id: nil).order("updated_at DESC").page(params[:page]).per(9)
+    # レスポンスを形式によってわけます
+    
+    
+  end
+  def result
+    # search.html.hamlのフォームに入力された値をもとにproductsのnameを曖昧検索します。
+    @products = Product.includes(:images).where("name LIKE ?","%#{params[:content]}%").order("updated_at DESC").page(params[:page]).per(9)
+    # @products = Product.includes(:images).where("name LIKE ?","%#{params[:content]}%").order("updated_at DESC")
+    # important - もしpagenate型のレコード取得をやめるなら、result.html.hamlのpagenate部分の消去が必要です。
+    
+    # ajax通信後のjson.jbuilderに対応する配列(画像のファイル名と出品者名)を設定します。
+    @images =[]
+    @salerusers =[]
+    # 検索された商品に対応するimageレコードと、出品者に当たるuserレコードを配列にpushします。
+    @products.each do |product|
+      image = Image.find_by(product_id: product.id)
+      @images <<image
+      user =User.find_by(id: product.saler_id)
+      @salerusers << user  
+    end
+    # formatごとにリダイレクト先を変えたりできますが、今回はあまり意味がないと考え設定していません。
+    respond_to do |format|
+      # 例えば format.html redirect_to result_pathとか。
+      format.html
+      format.json
+    end
+    # result.json.jbuilderではこの@products(ActiveRecord::Relation)と@images(Array)と@salerusers(Array)を使用し、doneのdataになるようにします。
+  end
   def new
     @product = Product.new
     @product.images.new

@@ -7,6 +7,11 @@ Rails.application.routes.draw do
   #また、デプロイが確認されたあとは、deploytestコントローラと、views内のdeploytestディレクトリも削除願います。
   resources :users, only: [:show,:index]
   resources :addresses, only: [:new, :create, :index]
+  get 'search' ,to: 'products#search'
+  # get 'result' ,to: 'products#result'
+  post 'result' ,to: 'products#result'
+ 
+  # 上記の記述は商品検索ページ用のルートです。
   resources :products do
     member do
       get 'purchase'
