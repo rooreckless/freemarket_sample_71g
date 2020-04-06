@@ -18,7 +18,7 @@
           %input{ type: "hidden", name: "card_id", value: "" }
           %button 削除する
       .card__show__main--mypage
-        = link_to root_path class:"mypage__btn" do
+        = link_to user_path class:"mypage__btn" do
           マイページへ戻る
 
 = render 'devise/footer'
