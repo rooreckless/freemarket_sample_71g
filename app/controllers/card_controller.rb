@@ -17,7 +17,7 @@ class CardController < ApplicationController
     puts "card_pay--2"
     logger.info 'card_pay--2'
     if params['payjp-token'].blank?
-      redirect_to action: "new"
+      redirect_to new_card_path, notice: '必須項目が入力されていません。すべての必須項目を入力してください。'
     else
       # デバッグ用表示部分
       puts "card_pay--3"

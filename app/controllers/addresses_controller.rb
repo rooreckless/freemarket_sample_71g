@@ -8,8 +8,13 @@ class AddressesController < ApplicationController
   end
 
   def create
-    @address = Address.create(address_params)
-    redirect_to new_card_path
+    @address = Address.new(address_params)
+    if @address.save
+      redirect_to new_card_path and return
+    else
+      redirect_to new_address_path, notice: '必須項目で入力されていないものがあります。すべての必須項目を入力してください' and return
+    end
+    
   end
 
   private
