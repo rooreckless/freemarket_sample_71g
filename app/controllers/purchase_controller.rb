@@ -53,12 +53,12 @@ class PurchaseController < ApplicationController
     # redirect_to action: 'done' #完了画面に移動
     puts "purchase_pay--5"
     logger.info 'purchase_pay--5'
-    redirect_to product_path(params.require(:product_id)), notice: '購入完了しました。'
     # saveに失敗したらflashを表示し、商品詳細画面に戻ります。
+    redirect_to purchase_product_path(params.require(:product_id)), notice: '購入完了しました。'and return
   else
     puts "purchase_pay--6"
     logger.info 'purchase_pay--6'
-    redirect_to product_path(params.require(:product_id)), notice: 'エラーが発生しました。'
+    redirect_to purchase_product_path(params.require(:product_id)), notice: 'エラーが発生しました。'and return
   end
   
   end
